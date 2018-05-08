@@ -16,8 +16,7 @@ const general = {
   statusBar: {
     backgroundColor: '#ff0000', 
     elevation: 4, 
-    marginBottom: 6, 
-    marginTop: 24
+    marginBottom: 6
   },
   sectionTitle: {
     color: colors.title,

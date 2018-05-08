@@ -79,13 +79,13 @@ class Ranking extends Component {
         if (this.props.quadrimestreAnual) {
             return (
                 <View >
-                    <Text style={ general.touchableHighlight }>{this.props.cdQuadrimeste} Quadrimestre</Text>
+                    <Text style={ [general.touchableHighlight, { fontSize: 16}] }>{this.props.cdQuadrimeste}º Quadrimestre</Text>
                 </View> 
             )
         } else {
             return (
                 <View >
-                    <Text style={ general.touchableHighlightPrincipal }>{this.props.cdQuadrimeste} Quadrimestre</Text>
+                    <Text style={ [general.touchableHighlightPrincipal, { fontSize: 20}] }>{this.props.cdQuadrimeste}º Quadrimestre</Text>
                 </View> 
             )
         }
@@ -95,13 +95,13 @@ class Ranking extends Component {
         if (this.props.quadrimestreAnual) {
             return (
                 <View>
-                    <Text style={ general.touchableHighlightPrincipal }>Anual</Text>
+                    <Text style={ [general.touchableHighlightPrincipal, { fontSize: 20}] }>Anual</Text>
                 </View> 
             )
         } else {
             return (
                 <View>
-                    <Text style={ general.touchableHighlight }>Anual</Text>
+                    <Text style={ [general.touchableHighlight, { fontSize: 16}] }>Anual</Text>
                 </View>
             )
         }
@@ -110,33 +110,33 @@ class Ranking extends Component {
     render() {
         if (this.props.exibeEvolucao == true) {
             return (
-                <View style={{ flex: 1, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <ActivityIndicator size='large'/>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                    <ActivityIndicator size='large' color='#ff0000'/>
                 </View>
             )
         } else {
             return (                
-                <ScrollView>                    
-                    <View style={ general.container }>
-                        
-                        <View style={{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
-                            <TouchableHighlight
-                                onPress={() => this.carregaRankingAtual() }
-                                underlayColor="#cacaca">
-                                { this.linkQuadrimestreAtual() } 
-                            </TouchableHighlight>
-                            <TouchableHighlight
-                                onPress={() => this.carregaRankingAnual() }
-                                underlayColor="#cacaca">
-                                { this.linkQuadrimestreAnual() }
-                            </TouchableHighlight>
-                        </View>
-    
+                <View style={ general.container }>
+                    <View style={{ alignItems: 'center', justifyContent: 'space-between', 
+                        flexDirection: 'row', paddingBottom: 15 }}>
+                        <TouchableHighlight
+                            onPress={() => this.carregaRankingAtual() }
+                            underlayColor="#cacaca">
+                            { this.linkQuadrimestreAtual() } 
+                        </TouchableHighlight>
+                        <TouchableHighlight
+                            onPress={() => this.carregaRankingAnual() }
+                            underlayColor="#cacaca">
+                            { this.linkQuadrimestreAnual() }
+                        </TouchableHighlight>
+                    </View>
+
+                    <ScrollView>
                         <View>
                             { this.montaRanking() }                    
                         </View>
-                    </View>
-                </ScrollView>
+                    </ScrollView>
+                </View>
             );
         }
     }

@@ -23,7 +23,7 @@ class UltimaPartida extends Component {
 
     exibirDataPlacar() {
         return (
-            <View style={{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
+            <View style={{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', paddingBottom: 20 }}>
                 <LabelValue label="Data" value={this.props.dtUltimapartida} />
                 <LabelValue label="Placar" value={this.props.deResultado} />
             </View>
@@ -33,13 +33,16 @@ class UltimaPartida extends Component {
     exibirTimes() {
         return (
             <View style={{ flexDirection: 'row',  justifyContent: 'center' }}>
-            <Image source={ require('../../assets/camiseta.png') } 
-                    style={{ backgroundColor: '#ffff00', width:40, height: 40 }}/>
-                <ListaTimes time="Time Amarelo" socios={this.props.sociostimea} alinhamento="flex-end"/>
-                <View style={{width: 20}}></View>
-                <ListaTimes time="Time Azul" socios={this.props.sociostimeb} alinhamento="flex-start"/>
-                <Image source={ require('../../assets/camiseta.png') } 
-                    style={{ backgroundColor: '#0000FF', width:40, height: 40 }}/>
+                <View style={{ paddingRight: 5 }}>
+                    <ListaTimes time="Time Amarelo" socios={this.props.sociostimea} 
+                        alinhamento="flex-end"
+                        corCamisa="#ffff00"/>
+                </View>
+                <View style={{ paddingLeft: 5 }}>
+                    <ListaTimes time="Time Azul" socios={this.props.sociostimeb} 
+                        alinhamento="flex-start"
+                        corCamisa="#0000FF"/>
+                </View>
             </View>
         )
     }
@@ -88,19 +91,19 @@ class UltimaPartida extends Component {
         } else if (!this.props.dtUltimapartida) {
             return (
                 <View style={{ flex: 1, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <ActivityIndicator size='large'/>
+                    <ActivityIndicator size='large' color='#ff0000'/>
                 </View>
             )
         } else {
             return ( 
                 <ScrollView>
-                <View style={ general.container }>
-                    { this.exibirDataPlacar() } 
-                    { this.exibirTimes() }
-                    { this.exibirBolaCheia() }
-                    { this.exibirBolaMurcha() }
-                </View>
-            </ScrollView>
+                    <View style={ general.container }>
+                        { this.exibirDataPlacar() } 
+                        { this.exibirTimes() }
+                        { this.exibirBolaCheia() }
+                        { this.exibirBolaMurcha() }
+                    </View>
+                </ScrollView>
             )
         }
     }

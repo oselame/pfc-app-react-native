@@ -6,7 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import { colors } from '../styles';
 
 export default props => (
-    <View style={{ backgroundColor: colors.header, elevation: 4, marginBottom: 6, marginTop: 24 }}>
+    <View style={{ backgroundColor: colors.header, elevation: 4, marginBottom: 6 }}>
         
         <StatusBar backgroundColor={ colors.header } />
         

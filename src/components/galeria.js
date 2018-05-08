@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { List, ListItem } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 
 import { general } from '../styles';
 
@@ -10,10 +10,6 @@ import { carregaGalerias, carregaFotosGalerias } from '../actions/AppActions';
 
 class Galeria extends Component {
     
-    constructor(props) {
-        super(props);
-    }
-
     componentWillMount() {
         this.props.carregaGalerias();
     }
@@ -28,7 +24,11 @@ class Galeria extends Component {
                 key={i}
                 title={galeria.deGaleria}
                 subtitle={galeria.dtGaleria}
-                onPress={() => this.handleClickGaleria(galeria.cdGaleria)}
+                chevronColor='#000'
+                chevron
+                topDivider
+                bottomDivider
+                onPress={() => this.handleClickGaleria(galeria.cdGaleria)} 
             />
         ))
     }
@@ -36,10 +36,8 @@ class Galeria extends Component {
     render() {
         return (
             <ScrollView>
-                <View style={ general.container }>
-                    <List>
-                        { this.renderRow() }
-                    </List>
+                <View>
+                    { this.renderRow() }
                 </View>
             </ScrollView>
         )
