@@ -28,12 +28,13 @@ class Aniversariantes extends Component {
                 topDivider
                 bottomDivider
                 leftAvatar={{ 
+                    size: 40,
                     rounded: true,
-                    source: { uri: `data:image/png;base64, ${niver.foto}` },
+                    source: { uri: `data:image/png;base64, ${niver.foto}` }
                 }}
                 onPress={() => false } 
-            />
-            
+                onLongPress={() => false } 
+            />            
         ));
     }
 

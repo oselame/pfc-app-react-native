@@ -13,8 +13,8 @@ export default props => (
     titleStyle={{ color: '#fff'}} >
     
     <Stack key="root">
-      <Scene key='boasvindas'   component={BoasVindas}   title="Bem Vindo" hideNavBar={true}  />
-      <Scene key='principal'    component={Principal}    title="Principal" hideNavBar={true} initial />
+      <Scene key='boasvindas'   component={BoasVindas}   title="Bem Vindo" hideNavBar={true} initial />
+      <Scene key='principal'    component={Principal}    title="Principal" hideNavBar={true}  />
       <Scene key='fotosgaleria' component={FotoGaleria}   title="Fotos" hideNavBar={false}  />
     </Stack>
 

@@ -41,6 +41,9 @@ class Ranking extends Component {
                             <View style={{ width: 30 }}>
                                 <Text style={{ fontSize: 10, textAlign: 'right' }}>E</Text>
                             </View>
+                            <View style={{ width: 30 }}>
+                                <Text style={{ fontSize: 10, textAlign: 'right' }}>D</Text>
+                            </View>
                         </View>
                     </View>
 
@@ -65,6 +68,9 @@ class Ranking extends Component {
                         </View>
                         <View style={{ width: 30 }}>
                             <Text style={{ textAlign: 'right' }}>{ rank.nuEmpates }</Text>
+                        </View>
+                        <View style={{ width: 30 }}>
+                            <Text style={{ textAlign: 'right' }}>{ rank.nuDerrotas }</Text>
                         </View>
                     </View>
                 </View>        
@@ -131,7 +137,7 @@ class Ranking extends Component {
                         </TouchableHighlight>
                     </View>
 
-                    <ScrollView>
+                    <ScrollView style={{paddingRight: 10}}>
                         <View>
                             { this.montaRanking() }                    
                         </View>
@@ -148,6 +154,7 @@ const mapStateToProps = state => ({
     quadrimestreAnual: state.AppReducer.quadrimestreAnual,
     exibeEvolucao: state.AppReducer.exibeEvolucao
 });
+
 
 const mapDispatchToProps = dispatch => bindActionCreators(
     { carregaRankingAtual, carregaRankingAnual }, dispatch);
