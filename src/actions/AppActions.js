@@ -88,3 +88,23 @@ export const carregaFotosGalerias = (cdGaleria) => {
             } );
     }
 };
+
+export const carregaJantares = () => {
+    console.log("carregaJantares");
+    return dispatch => {     
+        const url = `${URL_API}/jantas/`;  
+        axios.get(url, {})
+            .then( jantas => {
+                console.log(jantas.data);
+                dispatch({
+                    type: types.CARREGA_JANTARES,
+                    payload: jantas.data
+                })
+            })
+            .catch( err => {
+                console.log(err);
+            } );
+    }
+};
+
+

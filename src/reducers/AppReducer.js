@@ -15,7 +15,8 @@ const INITIAL_STATE = {
     galerias: [],
     cdGaleria: 2,
     fotosgaleria: [],
-    erroCarregarUltimaPartida: false
+    erroCarregarUltimaPartida: false,
+    jantares: []
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -75,6 +76,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 exibeEvolucao: true
+            }
+        case types.CARREGA_JANTARES:
+            return {
+                ...state,
+                jantares: action.payload
             }
         default: 
             return state;

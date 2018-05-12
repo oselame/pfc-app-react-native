@@ -7,6 +7,7 @@ import UltimaPartida from './ultimaPartida';
 import Ranking from './ranking';
 import Aniversariantes from './aniversariantes';
 import Galeria from './galeria';
+import Janta from './jantas';
 
 const initialLayout = {
   height: 0,
@@ -20,7 +21,8 @@ export default class Principal extends React.Component {
       { key: '1', title: 'Partida' },
       { key: '2', title: 'Ranking' },
       { key: '3', title: 'Aniversários' },
-      { key: '4', title: 'Galeria' },
+      { key: '4', title: 'Galerias' },
+      { key: '5', title: 'Jantares' }
     ],
   };
 
@@ -32,7 +34,8 @@ export default class Principal extends React.Component {
     '1': UltimaPartida,
     '2': Ranking,
     '3': Aniversariantes,
-    '4': Galeria
+    '4': Galeria,
+    '5': Janta
   });
 
   render() {

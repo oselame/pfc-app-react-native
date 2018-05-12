@@ -9,5 +9,6 @@ export const types = {
     SELECIONAR_GALERIA: 'selecionar_galeria',
     CARREGA_FOTOS_GALERIA: 'carrega_fotos_galeria',
     EXIBE_EVOLUCAO_RANKING: 'exibe_evolucao_ranking',
+    CARREGA_JANTARES: 'carrega_jantares'
 
 };
