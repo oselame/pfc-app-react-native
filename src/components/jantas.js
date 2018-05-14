@@ -11,6 +11,10 @@ import { general } from '../styles';
 class Janta extends Component {
 
     componentWillMount() {
+        this.carregaListaJantares();
+    }
+
+    carregaListaJantares() {
         this.props.carregaJantares();
     }
 
@@ -30,30 +34,35 @@ class Janta extends Component {
     }
 
     render() {
-        if (!this.props.jantares.length) {
+        if (this.props.erroCarregarJantares == true) {
             return (
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <ActivityIndicator size='large' color='#ff0000'/>
+                        <Text>Não foi possível carregar a lista de Jantas.</Text>
                 </View>
             )
         } else {
-            return (
-                <ScrollView>
-                    <View style={ general.container }>
-                       { this.exibeJantares() }
+            if (!this.props.jantares.length) {
+                return (
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                        <ActivityIndicator size='large' color='#ff0000'/>
                     </View>
-                </ScrollView>
-            )
+                )
+            } else {
+                return (
+                    <ScrollView>
+                        <View style={ general.container }>
+                           { this.exibeJantares() }
+                        </View>
+                    </ScrollView>
+                )
+            }
         }
-
-        return (
-            <View><Text>XXXX</Text></View>
-        );
     }
 }
 
 
 const mapStateToProps = state => ({ 
+    erroCarregarJantares: state.AppReducer.erroCarregarJantares,
     jantares: state.AppReducer.jantares
 });
 

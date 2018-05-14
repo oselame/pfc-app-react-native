@@ -1,6 +1,14 @@
 import { types } from './types';
 
 export const dispatcher = {
+
+    verificaBackendNoArDispatcher: (isBackendNoAr, dispatch) => {
+        dispatch({
+            type: types.BACKEND_NO_AR,
+            payload: isBackendNoAr
+        });
+    },
+    
     carregarUltimaPartidaDispatcher: (partidas, dispatch) => {
             dispatch({
                 type: types.CARREGA_ULTIMA_PARTIDA,

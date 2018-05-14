@@ -1,4 +1,5 @@
 export const types = {
+    BACKEND_NO_AR: 'backend_no_ar',
     CARREGA_ULTIMA_PARTIDA: 'carrega_ultima_partida',
     CARREGA_ULTIMA_PARTIDA_ERRO: 'carrega_ultima_partida_erro',
     CARREGA_RANKING_ATUAL: 'carrega_ranking_atual',
@@ -9,6 +10,7 @@ export const types = {
     SELECIONAR_GALERIA: 'selecionar_galeria',
     CARREGA_FOTOS_GALERIA: 'carrega_fotos_galeria',
     EXIBE_EVOLUCAO_RANKING: 'exibe_evolucao_ranking',
-    CARREGA_JANTARES: 'carrega_jantares'
+    CARREGA_JANTARES: 'carrega_jantares',
+    CARREGA_JANTARES_ERRO: 'carrega_jantares_erro'
 
 };

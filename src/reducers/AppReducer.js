@@ -1,6 +1,7 @@
 import { types } from '../actions/types';
 
 const INITIAL_STATE = {
+    backendNoAr: false,
     dtUltimapartida: '',
     deResultado: '',
     deBolamurcha: '',
@@ -16,11 +17,17 @@ const INITIAL_STATE = {
     cdGaleria: 2,
     fotosgaleria: [],
     erroCarregarUltimaPartida: false,
+    erroCarregarJantares: false,
     jantares: []
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case types.BACKEND_NO_AR:
+            return {
+                ...state, 
+                backendNoAr: action.payload
+            }
         case types.CARREGA_ULTIMA_PARTIDA: 
             return { ...state, 
                 dtUltimapartida: action.payload.dtPartida,
@@ -80,7 +87,14 @@ export default (state = INITIAL_STATE, action) => {
         case types.CARREGA_JANTARES:
             return {
                 ...state,
-                jantares: action.payload
+                jantares: action.payload,
+                erroCarregarJantares: false
+            }
+        case types.CARREGA_JANTARES_ERRO: 
+            return {
+                ...state,
+                erroCarregarJantares: true,
+                jantares: []
             }
         default: 
             return state;

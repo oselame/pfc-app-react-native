@@ -5,6 +5,19 @@ import axios from 'axios';
 
 import { URL_API } from '../config/server';
 
+export const verificaBackend = () => {
+    return dispatch => {   
+        const url = `${URL_API}/v2/api-docs`; 
+        axios.get(url)
+            .then( partidas => {
+                dispatcher.verificaBackendNoArDispatcher(true, dispatch);
+            })
+            .catch( err => {
+                dispatcher.verificaBackendNoArDispatcher(false, dispatch);
+            } );
+    };
+}
+
 export const carregaUltimaPartida = () => {
     return dispatch => {   
         const url = `${URL_API}/partidas/ultimaPartida`; 
@@ -95,14 +108,15 @@ export const carregaJantares = () => {
         const url = `${URL_API}/jantas/`;  
         axios.get(url, {})
             .then( jantas => {
-                console.log(jantas.data);
                 dispatch({
                     type: types.CARREGA_JANTARES,
                     payload: jantas.data
                 })
             })
             .catch( err => {
-                console.log(err);
+                dispatch({
+                    type: types.CARREGA_JANTARES_ERRO
+                })
             } );
     }
 };
