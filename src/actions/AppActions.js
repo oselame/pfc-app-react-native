@@ -1,15 +1,16 @@
 import { Actions } from 'react-native-router-flux';
-import { types } from './types';
-import { dispatcher } from './dispatches';
 import axios from 'axios';
 
 import { URL_API } from '../config/server';
+import { types } from './types';
+import { dispatcher } from './dispatches';
+
 
 export const verificaBackend = () => {
     return dispatch => {   
         const url = `${URL_API}/v2/api-docs`; 
         axios.get(url)
-            .then( partidas => {
+            .then( () => {
                 dispatcher.verificaBackendNoArDispatcher(true, dispatch);
             })
             .catch( err => {

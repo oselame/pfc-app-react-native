@@ -10,13 +10,12 @@ import { colors } from '../styles';
 
 class BoasVindas extends Component {
 
-    constructor(props) {
-        super(props);
+    componentWillMount() {
         this.props.verificaBackend();
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.backendNoAr == true) {
+    chamaVisaoPrincipal() {
+        if (this.props.backendNoAr == true) {
             setTimeout(() => {
                 Actions.principal();
             }, 2000);
@@ -25,6 +24,7 @@ class BoasVindas extends Component {
 
     render() {
         if (this.props.backendNoAr == true) {
+            { this.chamaVisaoPrincipal(); }
             return (
                 <View style={{flex:1, padding: 15, backgroundColor: '#fff'}}>
                     <View style={ {flex:1, justifyContent: 'center', alignItems: 'center'} }>
@@ -32,7 +32,8 @@ class BoasVindas extends Component {
                     </View>
                 </View>
             );
-        } else {
+        } 
+        if (this.props.backendNoAr == false) {
             return (
                 <View style={{flex:1, padding: 15, backgroundColor: '#fff'}}>
                     <View style={ {flex:1, justifyContent: 'center', alignItems: 'center'} }>

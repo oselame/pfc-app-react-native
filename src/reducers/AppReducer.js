@@ -1,7 +1,7 @@
 import { types } from '../actions/types';
 
 const INITIAL_STATE = {
-    backendNoAr: false,
+    backendNoAr: true,
     dtUltimapartida: '',
     deResultado: '',
     deBolamurcha: '',
