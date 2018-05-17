@@ -57,6 +57,19 @@ export const dispatcher = {
             payload: fotos.data,
             cdGaleria: cdGaleria
         });
+    },
+    carregaQuadrimestreAtualDispatcher: (request) => {
+        console.log("carregaQuadrimestreAtualDispatcher");
+        return  {
+                    type: types.CARREGA_QUADRIMESTRE_ATUAL,
+                    payload: request
+                };
+    },
+    carregaEvolucaoArtilheirosDispatcher: () => {
+        console.log("carregaEvolucaoArtilheirosDispatcher");
+        return  {
+            type: types.EXIBE_EVOLUCAO_ARTILHEIROS
+        };
     }
     
         

@@ -11,6 +11,10 @@ export const types = {
     CARREGA_FOTOS_GALERIA: 'carrega_fotos_galeria',
     EXIBE_EVOLUCAO_RANKING: 'exibe_evolucao_ranking',
     CARREGA_JANTARES: 'carrega_jantares',
-    CARREGA_JANTARES_ERRO: 'carrega_jantares_erro'
+    CARREGA_JANTARES_ERRO: 'carrega_jantares_erro',
+    CARREGA_QUADRIMESTRE_ATUAL: 'carrega_quadrimestre_atual',
+    EXIBE_EVOLUCAO_ARTILHEIROS: 'exibe_evolucao_artilheiros',
+    CARREGA_LISTA_QUADRIMESTRE_ANO: 'carrega_lista_quadrimestre_ano',
+    CARREGA_ARTILHEIRO_QUADRIMESTRE_ATUAL: 'carrega_artilheiro_quadrimestre_atual'
 
 };

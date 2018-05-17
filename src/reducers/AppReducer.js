@@ -8,17 +8,21 @@ const INITIAL_STATE = {
     deBolacheia: '',
     sociostimea: [],
     sociostimeb: [],
-    cdQuadrimestre: 1,
+    nuAno: 2000,
+    cdQuadrimestre: 0,
     ranking: [],
     quadrimestreAnual: false,
     exibeEvolucao: false,
     aniversariantes: [],
     galerias: [],
-    cdGaleria: 2,
+    cdGaleria: 0,
     fotosgaleria: [],
     erroCarregarUltimaPartida: false,
     erroCarregarJantares: false,
-    jantares: []
+    jantares: [],
+    exibeEvolucaoArtilheiros: false,
+    quadrimestres: [],
+    artilheiros: []
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -95,6 +99,29 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 erroCarregarJantares: true,
                 jantares: []
+            }
+        case types.CARREGA_QUADRIMESTRE_ATUAL:
+            return {
+                ...state,
+                cdQuadrimestre: action.payload.data.cdQuadrimestre,
+                nuAno: action.payload.data.nuAno
+            }
+        case types.CARREGA_LISTA_QUADRIMESTRE_ANO:
+            return {
+                ...state,
+                quadrimestres: action.payload
+            }
+        case types.EXIBE_EVOLUCAO_ARTILHEIROS:
+            return {
+                ...state,
+                exibeEvolucaoArtilheiros: true
+            }
+        case types.CARREGA_ARTILHEIRO_QUADRIMESTRE_ATUAL:
+            return {
+                ...state,
+                artilheiros: action.payload.socios,
+                nuAno: action.nuAno,
+                cdQuadrimestre: action.cdQuadrimestre
             }
         default: 
             return state;

@@ -122,4 +122,56 @@ export const carregaJantares = () => {
     }
 };
 
+const carregaArtilheirosQuadrimestreAtualAxios = (quadrimestre) => {
+    console.log(quadrimestre);
+    const url = `${URL_API}/ranking/quadrimestre?nuAno=${quadrimestre.nuAno}&cdQuadrimestre=${quadrimestre.cdQuadrimestre}`;   
+    console.log(url);
+    return request = axios.get(url, {});
+};
+
+const carregaQuadrimestreAtualAxios = () => {
+    const url = `${URL_API}/quadrimestre/atual`;   
+    const request = axios.get(url, {});
+    return dispatcher.carregaQuadrimestreAtualDispatcher(request);
+}
+
+export const carregaQuadrimestreAtual = () => {
+    return [dispatcher.carregaEvolucaoArtilheirosDispatcher(), carregaQuadrimestreAtualAxios()];
+}
+
+export const carregaListaQuadrimestreAno = (nuAno) => {
+    console.log("carregaListaQuadrimestreAno", nuAno);
+    return dispatch => {     
+        const url = `${URL_API}/quadrimestre/lista?nuAno=${nuAno}`;  
+        axios.get(url, {})
+            .then( quadrimestres => {
+                dispatch({
+                    type: types.CARREGA_LISTA_QUADRIMESTRE_ANO,
+                    payload: quadrimestres.data
+                })
+            })
+            .catch( err => {
+                console.log(err);
+            } );
+    }
+}
+
+export const carregaArtilheirosQuadrimestre = (nuAno, cdQuadrimestre) => {
+    console.log("carregaArtilheirosQuadrimestre", nuAno, cdQuadrimestre);
+    return dispatch => {     
+        const url = `${URL_API}/ranking/artilheiro?nuAno=${nuAno}&cdQuadrimestre=${cdQuadrimestre}`;  
+        axios.get(url, {})
+            .then( artilheiros => {
+                dispatch({
+                    type: types.CARREGA_ARTILHEIRO_QUADRIMESTRE_ATUAL,
+                    payload: artilheiros.data,
+                    nuAno: nuAno,
+                    cdQuadrimestre: cdQuadrimestre
+                })
+            })
+            .catch( err => {
+                console.log(err);
+            } );
+    }
+}
 

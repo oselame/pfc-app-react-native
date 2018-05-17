@@ -8,6 +8,7 @@ import Ranking from './ranking';
 import Aniversariantes from './aniversariantes';
 import Galeria from './galeria';
 import Janta from './jantas';
+import Artilheiro from './artilheiro';
 
 const initialLayout = {
   height: 0,
@@ -18,11 +19,12 @@ export default class Principal extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: '1', title: 'Partida' },
-      { key: '2', title: 'Ranking' },
-      { key: '3', title: 'Aniversários' },
-      { key: '4', title: 'Galerias' },
-      { key: '5', title: 'Jantares' }
+      { key: 'partida', title: 'Partida' },
+      { key: 'ranking', title: 'Ranking' },
+      { key: 'artilheiros', title: 'Artilheiros' },
+      { key: 'aniversarios', title: 'Aniversários' },
+      { key: 'janta', title: 'Jantares' },
+      { key: 'galerias', title: 'Galerias' }
     ],
   };
 
@@ -31,11 +33,12 @@ export default class Principal extends React.Component {
   _renderHeader = props => <TabBarMenu {...props} />;
 
   _renderScene = SceneMap({
-    '1': UltimaPartida,
-    '2': Ranking,
-    '3': Aniversariantes,
-    '4': Galeria,
-    '5': Janta
+    'partida': UltimaPartida,
+    'ranking': Ranking,
+    'artilheiros': Artilheiro,
+    'aniversarios': Aniversariantes,
+    'janta': Janta,
+    'galerias': Galeria
   });
 
   render() {
