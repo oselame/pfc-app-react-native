@@ -19,18 +19,21 @@ class Janta extends Component {
     }
 
     exibeJantares() {
-        return this.props.jantares.map( (janta, i) => (
-            <ListItem
-                key={i}
-                title={janta.socios}
-                titleStyle={{ fontSize: 18 }}
-                subtitle={janta.data}
-                topDivider
-                bottomDivider
-                onPress={() => false } 
-                onLongPress={() => false } 
-            />            
-        ));
+        return this.props.jantares.map( (janta, i) => {
+            const socios = janta.socios;
+            return (
+                <ListItem
+                    key={i}
+                    title={ socios }
+                    titleStyle={{ fontSize: 18 }}
+                    subtitle={janta.data}
+                    topDivider
+                    bottomDivider
+                    onPress={() => false } 
+                    onLongPress={() => false } 
+                />
+            )
+        });
     }
 
     render() {

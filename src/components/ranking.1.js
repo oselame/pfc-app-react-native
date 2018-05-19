@@ -7,22 +7,22 @@ import { Divider, List, ListItem } from 'react-native-elements';
 import { general } from '../styles';
 import LabelValue from './labelValue';
 
-import { carregaQuadrimestreAtual, carregaListaQuadrimestreAno, carregaRankingQuadrimestre } from '../actions/AppActions';
+import { carregaRankingAtual, carregaRankingAnual } from '../actions/AppActions';
 
 class Ranking extends Component {
 
     componentWillMount() {
-        this.props.carregaQuadrimestreAtual();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.nuAno !== this.props.nuAno) {
-            console.log("componentWillReceiveProps", this.props.nuAno);        
-            this.props.carregaListaQuadrimestreAno(nextProps.nuAno);
-            this.props.carregaRankingQuadrimestre( nextProps.nuAno, nextProps.cdQuadrimestre);
-        }
+        this.carregaRankingAtual();        
     }
     
+    carregaRankingAtual() {
+        this.props.carregaRankingAtual();
+    }
+
+    carregaRankingAnual() {
+        this.props.carregaRankingAnual();
+    }
+
     montaRanking() {
         return (
             this.props.ranking.map(rank => (
@@ -80,68 +80,38 @@ class Ranking extends Component {
         );
     }
 
-    carregaQuadrimestreSelecionado(nuAno, cdQuadrimestre) {
-        console.log("carregaQuadrimestreSelecionado", nuAno, cdQuadrimestre);
-        this.props.carregaRankingQuadrimestre( nuAno, cdQuadrimestre);
+
+    linkQuadrimestreAtual() {
+        if (this.props.quadrimestreAnual) {
+            return (
+                <View >
+                    <Text style={ [general.touchableHighlight, { fontSize: 16}] }>{this.props.cdQuadrimeste}º Quadrimestre</Text>
+                </View> 
+            )
+        } else {
+            return (
+                <View >
+                    <Text style={ [general.touchableHighlightPrincipal, { fontSize: 20}] }>{this.props.cdQuadrimeste}º Quadrimestre</Text>
+                </View> 
+            )
+        }
     }
 
-
-    montaLinks() {
-        return (
-            <View>
-                <View style={{ alignItems: 'center', justifyContent: 'space-between', 
-                    flexDirection: 'row', paddingBottom: 15 }}>
-                    {
-                        this.props.quadrimestres.map((quadr, i) => {
-
-                            if (quadr.cdQuadrimestre === 4) {
-                                if (quadr.cdQuadrimestre === this.props.cdQuadrimestre) {
-                                    return (
-                                        <TouchableHighlight
-                                            key={i}
-                                            onPress={() => false }
-                                            underlayColor="#cacaca">
-                                            <Text style={[general.touchableHighlight, { fontSize: 16, fontWeight: 'bold'}]}>Anual</Text> 
-                                        </TouchableHighlight>
-                                    )
-                                } else {
-                                    return (
-                                        <TouchableHighlight
-                                            key={i}
-                                            onPress={() => this.carregaQuadrimestreSelecionado(this.props.nuAno, quadr.cdQuadrimestre) }
-                                            underlayColor="#cacaca">
-                                            <Text style={[general.touchableHighlight, { fontSize: 16}]}>Anual</Text>
-                                        </TouchableHighlight>
-                                    )
-                                }
-                            } else {
-                                if (quadr.cdQuadrimestre === this.props.cdQuadrimestre) {
-                                    return (
-                                        <TouchableHighlight
-                                            key={i}
-                                            onPress={() => false }
-                                            underlayColor="#cacaca">
-                                            <Text style={[general.touchableHighlight, { fontSize: 16, fontWeight: 'bold'}]}>{quadr.cdQuadrimestre}º quadr.</Text>
-                                        </TouchableHighlight>
-                                    )
-                                } else {
-                                    return (
-                                        <TouchableHighlight
-                                            key={i}
-                                            onPress={() => this.carregaQuadrimestreSelecionado(this.props.nuAno, quadr.cdQuadrimestre) }
-                                            underlayColor="#cacaca">
-                                            <Text style={[general.touchableHighlight, { fontSize: 16}]}>{quadr.cdQuadrimestre}º quadr.</Text>
-                                        </TouchableHighlight>
-                                    )
-                                }
-                            }
-                        })
-                    }
+    linkQuadrimestreAnual() {
+        if (this.props.quadrimestreAnual) {
+            return (
+                <View>
+                    <Text style={ [general.touchableHighlightPrincipal, { fontSize: 20}] }>Anual</Text>
+                </View> 
+            )
+        } else {
+            return (
+                <View>
+                    <Text style={ [general.touchableHighlight, { fontSize: 16}] }>Anual</Text>
                 </View>
-            </View>
-        )
+            )
+        }
     }
-    
 
     render() {
         if (this.props.exibeEvolucao == true) {
@@ -153,7 +123,19 @@ class Ranking extends Component {
         } else {
             return (                
                 <View style={ general.container }>
-                    { this.montaLinks() }
+                    <View style={{ alignItems: 'center', justifyContent: 'space-between', 
+                        flexDirection: 'row', paddingBottom: 15 }}>
+                        <TouchableHighlight
+                            onPress={() => this.carregaRankingAtual() }
+                            underlayColor="#cacaca">
+                            { this.linkQuadrimestreAtual() } 
+                        </TouchableHighlight>
+                        <TouchableHighlight
+                            onPress={() => this.carregaRankingAnual() }
+                            underlayColor="#cacaca">
+                            { this.linkQuadrimestreAnual() }
+                        </TouchableHighlight>
+                    </View>
 
                     <ScrollView style={{paddingRight: 10}}>
                         <View>
@@ -167,15 +149,14 @@ class Ranking extends Component {
 }
 
 const mapStateToProps = state => ({
-    nuAno: state.AppReducer.nuAno,
-    cdQuadrimestre: state.AppReducer.cdQuadrimestre,
-    quadrimestres: state.AppReducer.quadrimestres,
+    cdQuadrimeste: state.AppReducer.cdQuadrimestre,
     ranking: state.AppReducer.ranking,
+    quadrimestreAnual: state.AppReducer.quadrimestreAnual,
     exibeEvolucao: state.AppReducer.exibeEvolucao
 });
 
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { carregaQuadrimestreAtual, carregaListaQuadrimestreAno, carregaRankingQuadrimestre }, dispatch);
+    { carregaRankingAtual, carregaRankingAnual }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ranking);

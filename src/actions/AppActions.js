@@ -136,7 +136,7 @@ const carregaQuadrimestreAtualAxios = () => {
 }
 
 export const carregaQuadrimestreAtual = () => {
-    return [dispatcher.carregaEvolucaoArtilheirosDispatcher(), carregaQuadrimestreAtualAxios()];
+    return [dispatcher.carregaEvolucaoRankingDispatcher(), carregaQuadrimestreAtualAxios()];
 }
 
 export const carregaListaQuadrimestreAno = (nuAno) => {
@@ -156,7 +156,7 @@ export const carregaListaQuadrimestreAno = (nuAno) => {
     }
 }
 
-export const carregaArtilheirosQuadrimestre = (nuAno, cdQuadrimestre) => {
+export const carregaArtilheirosQuadrimestreAxios = (nuAno, cdQuadrimestre) => {
     console.log("carregaArtilheirosQuadrimestre", nuAno, cdQuadrimestre);
     return dispatch => {     
         const url = `${URL_API}/ranking/artilheiro?nuAno=${nuAno}&cdQuadrimestre=${cdQuadrimestre}`;  
@@ -175,3 +175,29 @@ export const carregaArtilheirosQuadrimestre = (nuAno, cdQuadrimestre) => {
     }
 }
 
+export const carregaArtilheirosQuadrimestre = (nuAno, cdQuadrimestre) => {
+    return [dispatcher.carregaEvolucaoRankingDispatcher(), carregaArtilheirosQuadrimestreAxios(nuAno, cdQuadrimestre)];
+}
+
+const carregaRankingQuadrimestreAxios = (nuAno, cdQuadrimestre) => {
+    console.log("carregaRankingQuadrimestre", nuAno, cdQuadrimestre);
+    return dispatch => {     
+        const url = `${URL_API}/ranking/quadrimestre?nuAno=${nuAno}&cdQuadrimestre=${cdQuadrimestre}`;
+        axios.get(url, {})
+            .then( ranking => {                
+                dispatch({
+                    type: types.CARREGA_RANKING_QUADRIMESTRE_ATUAL,
+                    payload: ranking.data,
+                    nuAno: nuAno,
+                    cdQuadrimestre: cdQuadrimestre
+                })
+            })
+            .catch( err => {
+                console.log(err);
+            } );
+    }
+}
+
+export const carregaRankingQuadrimestre = (nuAno, cdQuadrimestre) => {
+    return [dispatcher.carregaEvolucaoRankingDispatcher(), carregaRankingQuadrimestreAxios(nuAno, cdQuadrimestre)];
+};

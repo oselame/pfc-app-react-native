@@ -22,7 +22,6 @@ class Artilheiro extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.nuAno !== this.props.nuAno) {
-            console.log("componentWillReceiveProps", this.props.nuAno);        
             this.props.carregaListaQuadrimestreAno(nextProps.nuAno);
             this.props.carregaArtilheirosQuadrimestre( nextProps.nuAno, nextProps.cdQuadrimestre);
         }
@@ -124,23 +123,32 @@ class Artilheiro extends Component {
     }
     
     render() {
-        return (
-            <View style={ general.container }>
-                { this.montaLinks() }
-
-                <ScrollView style={{paddingRight: 10}}>
-                    { this.montaRanking() }
-                </ScrollView>
-            </View>
-        )
+        if (this.props.exibeEvolucao == true) {
+            return (
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                    <ActivityIndicator size='large' color='#ff0000'/>
+                </View>
+            )
+        } else {
+            return (
+                <View style={ general.container }>
+                    { this.montaLinks() }
+    
+                    <ScrollView style={{paddingRight: 10}}>
+                        { this.montaRanking() }
+                    </ScrollView>
+                </View>
+            )
+        }
     }
 }
 
 const mapStateToProps = state => ({
-    cdQuadrimestre: state.AppReducer.cdQuadrimestre,
     nuAno: state.AppReducer.nuAno,
+    cdQuadrimestre: state.AppReducer.cdQuadrimestre,
     quadrimestres: state.AppReducer.quadrimestres,
-    artilheiros: state.AppReducer.artilheiros
+    artilheiros: state.AppReducer.artilheiros,
+    exibeEvolucao: state.AppReducer.exibeEvolucao
 });
 
 

@@ -64,12 +64,6 @@ export const dispatcher = {
                     type: types.CARREGA_QUADRIMESTRE_ATUAL,
                     payload: request
                 };
-    },
-    carregaEvolucaoArtilheirosDispatcher: () => {
-        console.log("carregaEvolucaoArtilheirosDispatcher");
-        return  {
-            type: types.EXIBE_EVOLUCAO_ARTILHEIROS
-        };
     }
     
         

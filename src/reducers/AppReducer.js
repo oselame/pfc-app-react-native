@@ -1,7 +1,7 @@
 import { types } from '../actions/types';
 
 const INITIAL_STATE = {
-    backendNoAr: true,
+    backendNoAr: -1,
     dtUltimapartida: '',
     deResultado: '',
     deBolamurcha: '',
@@ -20,7 +20,6 @@ const INITIAL_STATE = {
     erroCarregarUltimaPartida: false,
     erroCarregarJantares: false,
     jantares: [],
-    exibeEvolucaoArtilheiros: false,
     quadrimestres: [],
     artilheiros: []
 };
@@ -30,7 +29,7 @@ export default (state = INITIAL_STATE, action) => {
         case types.BACKEND_NO_AR:
             return {
                 ...state, 
-                backendNoAr: action.payload
+                backendNoAr: action.payload == true ? 1 : 0
             }
         case types.CARREGA_ULTIMA_PARTIDA: 
             return { ...state, 
@@ -111,17 +110,21 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 quadrimestres: action.payload
             }
-        case types.EXIBE_EVOLUCAO_ARTILHEIROS:
-            return {
-                ...state,
-                exibeEvolucaoArtilheiros: true
-            }
         case types.CARREGA_ARTILHEIRO_QUADRIMESTRE_ATUAL:
             return {
                 ...state,
                 artilheiros: action.payload.socios,
                 nuAno: action.nuAno,
-                cdQuadrimestre: action.cdQuadrimestre
+                cdQuadrimestre: action.cdQuadrimestre,
+                exibeEvolucao: false
+            }
+        case types.CARREGA_RANKING_QUADRIMESTRE_ATUAL:
+            return {
+                ...state,
+                ranking: action.payload.socios,
+                nuAno: action.nuAno,
+                cdQuadrimestre: action.cdQuadrimestre,
+                exibeEvolucao: false
             }
         default: 
             return state;
