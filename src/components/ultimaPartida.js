@@ -9,7 +9,7 @@ import { general } from '../styles';
 import LabelValue from './labelValue';
 import ListaTimes from './listaTimes';
 
-import { carregaUltimaPartida } from '../actions/AppActions';
+import { carregaUltimaPartida } from '../actions/UltimaPartidaActions';
 
 class UltimaPartida extends Component {
     
@@ -17,7 +17,7 @@ class UltimaPartida extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.carregaUltimaPartida();
     }
 
@@ -111,13 +111,13 @@ class UltimaPartida extends Component {
 }
 
 const mapStateToProps = state => ({
-    dtUltimapartida: state.AppReducer.dtUltimapartida,
-    deResultado: state.AppReducer.deResultado,
-    deBolacheia: state.AppReducer.deBolacheia,
-    deBolamurcha: state.AppReducer.deBolamurcha,
-    sociostimea: state.AppReducer.sociostimea,
-    sociostimeb: state.AppReducer.sociostimeb,
-    erroCarregarUltimaPartida: state.AppReducer.erroCarregarUltimaPartida
+    dtUltimapartida: state.UltimaPartidaReducer.dtUltimapartida,
+    deResultado: state.UltimaPartidaReducer.deResultado,
+    deBolacheia: state.UltimaPartidaReducer.deBolacheia,
+    deBolamurcha: state.UltimaPartidaReducer.deBolamurcha,
+    sociostimea: state.UltimaPartidaReducer.sociostimea,
+    sociostimeb: state.UltimaPartidaReducer.sociostimeb,
+    erroCarregarUltimaPartida: state.UltimaPartidaReducer.erroCarregarUltimaPartida
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(

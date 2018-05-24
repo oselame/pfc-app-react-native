@@ -39,6 +39,12 @@ export const dispatcher = {
                      type: types.EXIBE_EVOLUCAO_RANKING
             };
         },
+    carregaEvolucaoArtilheiroDispatcher: () => {
+            console.log("carregaEvolucaoArtilheiroDispatcher");
+            return  {
+                    type: types.EXIBE_EVOLUCAO_ARTILHEIRO
+            };
+        },
     carregaAniversariantesDispatcher: (aniversariantes, dispatch) => {
             dispatch({
                 type: types.CARREGA_ANIVERSARIANTES,
@@ -58,12 +64,13 @@ export const dispatcher = {
             cdGaleria: cdGaleria
         });
     },
-    carregaQuadrimestreAtualDispatcher: (request) => {
-        console.log("carregaQuadrimestreAtualDispatcher");
-        return  {
-                    type: types.CARREGA_QUADRIMESTRE_ATUAL,
-                    payload: request
-                };
+    
+    carregaQuadrimestreAtualDispatcher: (quadrimestreAtual, dispatch) => {
+        console.log("carregaQuadrimestreAtualDispatcher", quadrimestreAtual.data);
+        dispatch({
+            type: types.CARREGA_QUADRIMESTRE_ATUAL,
+            payload: quadrimestreAtual
+        });
     }
     
         

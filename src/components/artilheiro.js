@@ -7,7 +7,8 @@ import { Divider, List, ListItem } from 'react-native-elements';
 import { general } from '../styles';
 import LabelValue from './labelValue';
 
-import { carregaQuadrimestreAtual, carregaListaQuadrimestreAno, carregaArtilheirosQuadrimestre  } from '../actions/AppActions';
+import { carregaListaQuadrimestreAno  } from '../actions/AppActions';
+import { carregaArtilheirosQuadrimestre  } from '../actions/ArtilheiroActions';
 
 class Artilheiro extends Component {
 
@@ -17,19 +18,18 @@ class Artilheiro extends Component {
     
     
     componentWillMount() {
-        this.props.carregaQuadrimestreAtual();
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.nuAno !== this.props.nuAno) {
+        /*if (nextProps.nuAno !== this.props.nuAno) {
             this.props.carregaListaQuadrimestreAno(nextProps.nuAno);
             this.props.carregaArtilheirosQuadrimestre( nextProps.nuAno, nextProps.cdQuadrimestre);
-        }
+        }*/
     }
 
     carregaArtilheirosHandler(nuAno, cdQuadrimestre) {
         console.log("carregaArtilheirosHandler", nuAno, cdQuadrimestre);
-        this.props.carregaArtilheirosQuadrimestre( nuAno, cdQuadrimestre);
+        //this.props.carregaArtilheirosQuadrimestre( nuAno, cdQuadrimestre);
     }
     
 
@@ -144,15 +144,15 @@ class Artilheiro extends Component {
 }
 
 const mapStateToProps = state => ({
-    nuAno: state.AppReducer.nuAno,
-    cdQuadrimestre: state.AppReducer.cdQuadrimestre,
-    quadrimestres: state.AppReducer.quadrimestres,
-    artilheiros: state.AppReducer.artilheiros,
-    exibeEvolucao: state.AppReducer.exibeEvolucao
+    nuAno: state.ArtilheiroReducer.nuAno,
+    cdQuadrimestre: state.ArtilheiroReducer.cdQuadrimestre,
+    artilheiros: state.ArtilheiroReducer.artilheiros,
+    exibeEvolucao: state.ArtilheiroReducer.exibeEvolucao,
+    quadrimestres: state.AppReducer.quadrimestres
 });
 
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { carregaQuadrimestreAtual, carregaListaQuadrimestreAno, carregaArtilheirosQuadrimestre }, dispatch);
+    { carregaListaQuadrimestreAno, carregaArtilheirosQuadrimestre }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Artilheiro);

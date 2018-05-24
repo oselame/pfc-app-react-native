@@ -7,20 +7,59 @@ import { Divider, List, ListItem } from 'react-native-elements';
 import { general } from '../styles';
 import LabelValue from './labelValue';
 
-import { carregaQuadrimestreAtual, carregaListaQuadrimestreAno, carregaRankingQuadrimestre } from '../actions/AppActions';
+import { carregaListaQuadrimestreAno } from '../actions/AppActions';
+import { carregaRankingQuadrimestre } from '../actions/RankingActions';
 
 class Ranking extends Component {
 
-    componentWillMount() {
-        this.props.carregaQuadrimestreAtual();
-    }
+    constructor(props) {
+        super(props);
 
+        /*
+        this.state = {
+            nuAnoAtual: 2000,
+            cdQuadrimestreAtual: 0,
+            nuAno: 2000,
+            cdQuadrimestre: 0
+        };
+        */
+
+    }
+    
     componentWillReceiveProps(nextProps) {
-        if (nextProps.nuAno !== this.props.nuAno) {
-            console.log("componentWillReceiveProps", this.props.nuAno);        
-            this.props.carregaListaQuadrimestreAno(nextProps.nuAno);
-            this.props.carregaRankingQuadrimestre( nextProps.nuAno, nextProps.cdQuadrimestre);
+        /*
+        if (nextProps.nuAnoAtual !== this.state.nuAnoAtual ||
+            nextProps.cdQuadrimestreAtual !== this.state.cdQuadrimestreAtual) {
+                
+                //this.props.carregaListaQuadrimestreAno( nextProps.nuAnoAtual );
+                //this.props.carregaRankingQuadrimestre( nextProps.nuAnoAtual, nextProps.cdQuadrimestre);
+                
+                this.setState({
+                    nuAnoAtual: nextProps.nuAnoAtual,
+                    cdQuadrimestreAtual: nextProps.cdQuadrimestreAtual,
+                    nuAno: nextProps.nuAnoAtual,
+                    cdQuadrimestre: nextProps.cdQuadrimestreAtual
+                });
+            }
+            */
         }
+        
+        componentDidMount() {
+            //this.props.carregaListaQuadrimestreAno( this.state.nuAno );
+            //this.props.carregaRankingQuadrimestre( this.state.nuAno, this.state.cdQuadrimestre);
+        }
+        
+        componentDidUpdate() {
+        }
+        
+    componentWillMount() {
+        
+    }
+    
+    componentWillUpdate() {
+        console.log("nuAnoAtual", this.props.nuAnoAtual);
+        console.log("cdQuadrimestreAtual", this.props.cdQuadrimestreAtual);
+       
     }
     
     montaRanking() {
@@ -82,7 +121,8 @@ class Ranking extends Component {
 
     carregaQuadrimestreSelecionado(nuAno, cdQuadrimestre) {
         console.log("carregaQuadrimestreSelecionado", nuAno, cdQuadrimestre);
-        this.props.carregaRankingQuadrimestre( nuAno, cdQuadrimestre);
+        //this.props.carregaRankingQuadrimestre( nuAno, cdQuadrimestre);
+        //this.setState({ nuAno, cdQuadrimestre });
     }
 
 
@@ -95,7 +135,7 @@ class Ranking extends Component {
                         this.props.quadrimestres.map((quadr, i) => {
 
                             if (quadr.cdQuadrimestre === 4) {
-                                if (quadr.cdQuadrimestre === this.props.cdQuadrimestre) {
+                                if (quadr.cdQuadrimestre === this.state.cdQuadrimestre) {
                                     return (
                                         <TouchableHighlight
                                             key={i}
@@ -108,14 +148,14 @@ class Ranking extends Component {
                                     return (
                                         <TouchableHighlight
                                             key={i}
-                                            onPress={() => this.carregaQuadrimestreSelecionado(this.props.nuAno, quadr.cdQuadrimestre) }
+                                            onPress={() => this.carregaQuadrimestreSelecionado(this.state.nuAno, quadr.cdQuadrimestre) }
                                             underlayColor="#cacaca">
                                             <Text style={[general.touchableHighlight, { fontSize: 16}]}>Anual</Text>
                                         </TouchableHighlight>
                                     )
                                 }
                             } else {
-                                if (quadr.cdQuadrimestre === this.props.cdQuadrimestre) {
+                                if (quadr.cdQuadrimestre === this.state.cdQuadrimestre) {
                                     return (
                                         <TouchableHighlight
                                             key={i}
@@ -128,7 +168,7 @@ class Ranking extends Component {
                                     return (
                                         <TouchableHighlight
                                             key={i}
-                                            onPress={() => this.carregaQuadrimestreSelecionado(this.props.nuAno, quadr.cdQuadrimestre) }
+                                            onPress={() => this.carregaQuadrimestreSelecionado(this.state.nuAno, quadr.cdQuadrimestre) }
                                             underlayColor="#cacaca">
                                             <Text style={[general.touchableHighlight, { fontSize: 16}]}>{quadr.cdQuadrimestre}º quadr.</Text>
                                         </TouchableHighlight>
@@ -167,15 +207,18 @@ class Ranking extends Component {
 }
 
 const mapStateToProps = state => ({
-    nuAno: state.AppReducer.nuAno,
-    cdQuadrimestre: state.AppReducer.cdQuadrimestre,
-    quadrimestres: state.AppReducer.quadrimestres,
-    ranking: state.AppReducer.ranking,
-    exibeEvolucao: state.AppReducer.exibeEvolucao
+   // nuAnoAtual: state.AppReducer.nuAnoAtual,
+    //cdQuadrimestreAtual: state.AppReducer.cdQuadrimestreAtual,
+
+    nuAno: state.RankingReducer.nuAno,
+    cdQuadrimestre: state.RankingReducer.cdQuadrimestre,
+    ranking: state.RankingReducer.ranking,
+    exibeEvolucao: state.RankingReducer.exibeEvolucao,
+    quadrimestres: state.AppReducer.quadrimestres
 });
 
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { carregaQuadrimestreAtual, carregaListaQuadrimestreAno, carregaRankingQuadrimestre }, dispatch);
+    { carregaListaQuadrimestreAno, carregaRankingQuadrimestre }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ranking);

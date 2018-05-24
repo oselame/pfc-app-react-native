@@ -7,7 +7,7 @@ import { ListItem } from 'react-native-elements';
 
 import { general } from '../styles';
 
-import { carregaAniversariantes } from '../actions/AppActions';
+import { carregaAniversariantes } from '../actions/AniversarianteActions';
 
 class Aniversariantes extends Component {
     
@@ -15,7 +15,7 @@ class Aniversariantes extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {        
         this.props.carregaAniversariantes();
     }
 
@@ -61,7 +61,7 @@ class Aniversariantes extends Component {
 }
 
 const mapStateToProps = state => ({ 
-    aniversariantes: state.AppReducer.aniversariantes
+    aniversariantes: state.AniversarioReducer.aniversariantes
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators( { carregaAniversariantes }, dispatch);

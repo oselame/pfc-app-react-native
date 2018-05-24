@@ -6,11 +6,11 @@ import { ListItem } from 'react-native-elements';
 
 import { general } from '../styles';
 
-import { carregaGalerias, carregaFotosGalerias } from '../actions/AppActions';
+import { carregaGalerias, carregaFotosGalerias } from '../actions/GaleriaActions';
 
 class Galeria extends Component {
     
-    componentWillMount() {
+    componentDidMount() {
         this.props.carregaGalerias();
     }
 
@@ -46,7 +46,7 @@ class Galeria extends Component {
 }
 
 const mapStateToProps = state => ({ 
-    galerias: state.AppReducer.galerias
+    galerias: state.GaleriaReducer.galerias
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ carregaGalerias, carregaFotosGalerias }, dispatch);

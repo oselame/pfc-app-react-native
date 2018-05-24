@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ListItem } from 'react-native-elements';
 
-import { carregaJantares } from '../actions/AppActions';
+import { carregaJantares } from '../actions/JantaActions';
 
 import { general } from '../styles';
 
 class Janta extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.carregaListaJantares();
     }
 
@@ -65,8 +65,8 @@ class Janta extends Component {
 
 
 const mapStateToProps = state => ({ 
-    erroCarregarJantares: state.AppReducer.erroCarregarJantares,
-    jantares: state.AppReducer.jantares
+    erroCarregarJantares: state.JantaReducer.erroCarregarJantares,
+    jantares: state.JantaReducer.jantares
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators( { carregaJantares }, dispatch);

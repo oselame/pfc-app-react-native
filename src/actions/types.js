@@ -9,12 +9,14 @@ export const types = {
     CARREGA_GALERIAS: 'carrega_galerias',
     SELECIONAR_GALERIA: 'selecionar_galeria',
     CARREGA_FOTOS_GALERIA: 'carrega_fotos_galeria',
-    EXIBE_EVOLUCAO_RANKING: 'exibe_evolucao_ranking',
     CARREGA_JANTARES: 'carrega_jantares',
     CARREGA_JANTARES_ERRO: 'carrega_jantares_erro',
     CARREGA_QUADRIMESTRE_ATUAL: 'carrega_quadrimestre_atual',
     CARREGA_LISTA_QUADRIMESTRE_ANO: 'carrega_lista_quadrimestre_ano',
     CARREGA_ARTILHEIRO_QUADRIMESTRE_ATUAL: 'carrega_artilheiro_quadrimestre_atual',
-    CARREGA_RANKING_QUADRIMESTRE_ATUAL: 'carrega_ranking_quadrimestre_atual'
+    CARREGA_RANKING_QUADRIMESTRE_ATUAL: 'carrega_ranking_quadrimestre_atual',
+    
+    EXIBE_EVOLUCAO_RANKING: 'exibe_evolucao_ranking',
+    EXIBE_EVOLUCAO_ARTILHEIRO: 'exibe_evolucao_artilheiro'
 
 };

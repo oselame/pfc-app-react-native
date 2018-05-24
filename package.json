@@ -1,6 +1,6 @@
 {
   "name": "peladafc",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -16,7 +16,7 @@
     "react-native-gesture-handler": "^1.0.0-alpha.43",
     "react-native-htmlview": "^0.12.1",
     "react-native-router-flux": "^4.0.0-beta.28",
-    "react-native-tab-view": "^0.0.77",
+    "react-native-tab-view": "^0.0.78",
     "react-native-vector-icons": "^4.6.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",

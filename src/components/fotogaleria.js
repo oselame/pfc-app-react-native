@@ -6,7 +6,7 @@ import { ImageGallery } from '@nlabs/react-native-image-gallery';
 
 import { general } from '../styles';
 
-import { carregaFotosGalerias } from '../actions/AppActions';
+import { carregaFotosGalerias } from '../actions/GaleriaActions';
 import { URL_GALERIA } from '../config/server';
 
 class FotoGaleria extends PureComponent {
@@ -23,14 +23,15 @@ class FotoGaleria extends PureComponent {
            title: img.nmArqfoto
          })
        );
-       // console.log(imageUrls);
-       return <ImageGallery 
-                    images={imageUrls}  
-                    /*
-                    imageHeight={ Dimensions.get('window').height }
-                    imageWidth={ Dimensions.get('window').width }
-                    */
-                />;
+       return (
+            <ImageGallery 
+                images={imageUrls}  
+                /*
+                imageHeight={ Dimensions.get('window').height }
+                imageWidth={ Dimensions.get('window').width }
+                */
+            />
+        );
     }
     
     render() {
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
   });
     
 const mapStateToProps = state => ({ 
-    cdGaleria: state.AppReducer.cdGaleria,
-    fotosgaleria: state.AppReducer.fotosgaleria
+    cdGaleria: state.GaleriaReducer.cdGaleria,
+    fotosgaleria: state.GaleriaReducer.fotosgaleria
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ carregaFotosGalerias }, dispatch);
