@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
+import { Container, Content, List, ListItem, Left, Body, Text } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ListItem } from 'react-native-elements';
 
 import { carregaJantares } from '../actions/JantaActions';
 
-import { general } from '../styles';
-
 class Janta extends Component {
-
+    
     componentDidMount() {
         this.carregaListaJantares();
     }
@@ -18,51 +15,32 @@ class Janta extends Component {
         this.props.carregaJantares();
     }
 
-    exibeJantares() {
+    renderRow() {
         return this.props.jantares.map( (janta, i) => {
             const socios = janta.socios;
             return (
-                <ListItem
-                    key={i}
-                    title={ socios }
-                    titleStyle={{ fontSize: 18 }}
-                    subtitle={janta.data}
-                    topDivider
-                    bottomDivider
-                    onPress={() => false } 
-                    onLongPress={() => false } 
-                />
+                <ListItem key={i}>
+                    <Body>
+                        <Text>{socios}</Text>
+                        <Text note>{janta.data}</Text>
+                    </Body>
+                </ListItem>
             )
-        });
-    }
+        }
+    )}
 
     render() {
-        if (this.props.erroCarregarJantares == true) {
-            return (
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <Text>Não foi possível carregar a lista de Jantas.</Text>
-                </View>
-            )
-        } else {
-            if (!this.props.jantares.length) {
-                return (
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <ActivityIndicator size='large' color='#ff0000'/>
-                    </View>
-                )
-            } else {
-                return (
-                    <ScrollView>
-                        <View style={ general.container }>
-                           { this.exibeJantares() }
-                        </View>
-                    </ScrollView>
-                )
-            }
-        }
+        return (
+            <Container>
+                <Content>
+                    <List>
+                        { this.renderRow() }
+                    </List>
+                </Content>
+            </Container>
+        );
     }
 }
-
 
 const mapStateToProps = state => ({ 
     erroCarregarJantares: state.JantaReducer.erroCarregarJantares,

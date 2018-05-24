@@ -1,48 +1,56 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { Container, Content, List, ListItem, Text, Left, Right, Icon, View } from 'native-base';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ListItem } from 'react-native-elements';
-
-import { general } from '../styles';
 
 import { carregaGalerias, carregaFotosGalerias } from '../actions/GaleriaActions';
 
 class Galeria extends Component {
-    
+
     componentDidMount() {
+        this.carregaGalerias();
+    }
+    
+    carregaGalerias() {
         this.props.carregaGalerias();
     }
 
-    handleClickGaleria(cdGaleria) {     
-        this.props.carregaFotosGalerias(cdGaleria);
+    handleClickGaleria(galeria) {     
+        this.props.carregaFotosGalerias(galeria);
     }
+
 
     renderRow() {
         return this.props.galerias.map( (galeria, i) => (
-            <ListItem
-                key={i}
-                title={galeria.deGaleria}
-                subtitle={galeria.dtGaleria}
-                chevronColor='#000'
-                chevron
-                topDivider
-                bottomDivider
-                onPress={() => this.handleClickGaleria(galeria.cdGaleria)} 
-            />
-        ))
+            <ListItem key={i} 
+                onPress={() => this.handleClickGaleria(galeria)} 
+            >
+                <Left>
+                    <View style={{ flexDirection: 'column' }}>
+                        <Text>{galeria.deGaleria}</Text>
+                        <Text note>{galeria.dtGaleria}</Text>
+                    </View>
+                </Left>
+                <Right>
+                    <Icon name="arrow-forward" />
+                </Right>
+            </ListItem>
+        ));
     }
 
     render() {
         return (
-            <ScrollView>
-                <View>
-                    { this.renderRow() }
-                </View>
-            </ScrollView>
+            <Container>
+                <Content>
+                    <List>
+                        { this.renderRow() }                        
+                    </List>
+                </Content>
+            </Container>
         )
     }
-    
+
 }
 
 const mapStateToProps = state => ({ 

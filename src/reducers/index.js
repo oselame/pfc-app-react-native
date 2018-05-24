@@ -7,6 +7,7 @@ import JantaReducer from './JantaReducer';
 import GaleriaReducer from './GaleriaReducer';
 import AniversarioReducer from './AniversarioReducer';
 import UltimaPartidaReducer from './UltimaPartidaReducer';
+import QuadrimestreReducer from './QuadrimestreReducer';
 
 export default combineReducers({
     AppReducer: AppReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
     JantaReducer: JantaReducer,
     GaleriaReducer: GaleriaReducer,
     AniversarioReducer: AniversarioReducer,
-    UltimaPartidaReducer: UltimaPartidaReducer
+    UltimaPartidaReducer: UltimaPartidaReducer,
+    QuadrimestreReducer: QuadrimestreReducer
 });

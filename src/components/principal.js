@@ -12,7 +12,7 @@ import Galeria from './galeria';
 import Janta from './jantas';
 import Artilheiro from './artilheiro';
 
-import { carregaQuadrimestreAtual } from '../actions/AppActions';
+import { carregaQuadrimestreAtual } from '../actions/QuadrimestreActions';
 
 const initialLayout = {
   height: 0,

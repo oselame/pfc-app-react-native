@@ -9,7 +9,7 @@ import { general } from '../styles';
 import { carregaFotosGalerias } from '../actions/GaleriaActions';
 import { URL_GALERIA } from '../config/server';
 
-class FotoGaleria extends PureComponent {
+class FotoGaleriaOld extends PureComponent {
 
     componentDidMount() {
         this.props.carregaFotosGalerias(this.props.cdGaleria);

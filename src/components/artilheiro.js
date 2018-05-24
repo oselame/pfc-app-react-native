@@ -7,32 +7,13 @@ import { Divider, List, ListItem } from 'react-native-elements';
 import { general } from '../styles';
 import LabelValue from './labelValue';
 
+/*
 import { carregaListaQuadrimestreAno  } from '../actions/AppActions';
 import { carregaArtilheirosQuadrimestre  } from '../actions/ArtilheiroActions';
-
+*/
 class Artilheiro extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-    
-    
-    componentWillMount() {
-    }
-
-    componentWillReceiveProps(nextProps) {
-        /*if (nextProps.nuAno !== this.props.nuAno) {
-            this.props.carregaListaQuadrimestreAno(nextProps.nuAno);
-            this.props.carregaArtilheirosQuadrimestre( nextProps.nuAno, nextProps.cdQuadrimestre);
-        }*/
-    }
-
-    carregaArtilheirosHandler(nuAno, cdQuadrimestre) {
-        console.log("carregaArtilheirosHandler", nuAno, cdQuadrimestre);
-        //this.props.carregaArtilheirosQuadrimestre( nuAno, cdQuadrimestre);
-    }
-    
-
+/*
     montaLinks() {
         return (
             <View>
@@ -142,17 +123,28 @@ class Artilheiro extends Component {
         }
     }
 }
+*/
 
+    render() {
+        return (
+            <Text>xxxx</Text>
+        )
+    };
+}
+/*
 const mapStateToProps = state => ({
     nuAno: state.ArtilheiroReducer.nuAno,
     cdQuadrimestre: state.ArtilheiroReducer.cdQuadrimestre,
     artilheiros: state.ArtilheiroReducer.artilheiros,
     exibeEvolucao: state.ArtilheiroReducer.exibeEvolucao,
-    quadrimestres: state.AppReducer.quadrimestres
+    quadrimestres: state.AppReducer.quadrimestres 
 });
 
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { carregaListaQuadrimestreAno, carregaArtilheirosQuadrimestre }, dispatch);
+    {  }, dispatch);
+    
+    export default connect(mapStateToProps, mapDispatchToProps)(Artilheiro);
+*/
 
-export default connect(mapStateToProps, mapDispatchToProps)(Artilheiro);
+export default Artilheiro;

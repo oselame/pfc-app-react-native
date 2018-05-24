@@ -1,1 +1,0 @@
-# pfc-app-react-native

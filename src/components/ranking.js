@@ -6,60 +6,19 @@ import { Divider, List, ListItem } from 'react-native-elements';
 
 import { general } from '../styles';
 import LabelValue from './labelValue';
+import Quadrimestre from './quadrimestre';
+import Evolucao from './evolucao';
 
-import { carregaListaQuadrimestreAno } from '../actions/AppActions';
 import { carregaRankingQuadrimestre } from '../actions/RankingActions';
 
 class Ranking extends Component {
 
     constructor(props) {
         super(props);
-
-        /*
-        this.state = {
-            nuAnoAtual: 2000,
-            cdQuadrimestreAtual: 0,
-            nuAno: 2000,
-            cdQuadrimestre: 0
-        };
-        */
-
     }
-    
-    componentWillReceiveProps(nextProps) {
-        /*
-        if (nextProps.nuAnoAtual !== this.state.nuAnoAtual ||
-            nextProps.cdQuadrimestreAtual !== this.state.cdQuadrimestreAtual) {
-                
-                //this.props.carregaListaQuadrimestreAno( nextProps.nuAnoAtual );
-                //this.props.carregaRankingQuadrimestre( nextProps.nuAnoAtual, nextProps.cdQuadrimestre);
-                
-                this.setState({
-                    nuAnoAtual: nextProps.nuAnoAtual,
-                    cdQuadrimestreAtual: nextProps.cdQuadrimestreAtual,
-                    nuAno: nextProps.nuAnoAtual,
-                    cdQuadrimestre: nextProps.cdQuadrimestreAtual
-                });
-            }
-            */
-        }
-        
-        componentDidMount() {
-            //this.props.carregaListaQuadrimestreAno( this.state.nuAno );
-            //this.props.carregaRankingQuadrimestre( this.state.nuAno, this.state.cdQuadrimestre);
-        }
-        
-        componentDidUpdate() {
-        }
-        
-    componentWillMount() {
-        
-    }
-    
-    componentWillUpdate() {
-        console.log("nuAnoAtual", this.props.nuAnoAtual);
-        console.log("cdQuadrimestreAtual", this.props.cdQuadrimestreAtual);
-       
+
+    componentDidMount() {
+
     }
     
     montaRanking() {
@@ -120,9 +79,6 @@ class Ranking extends Component {
     }
 
     carregaQuadrimestreSelecionado(nuAno, cdQuadrimestre) {
-        console.log("carregaQuadrimestreSelecionado", nuAno, cdQuadrimestre);
-        //this.props.carregaRankingQuadrimestre( nuAno, cdQuadrimestre);
-        //this.setState({ nuAno, cdQuadrimestre });
     }
 
 
@@ -184,41 +140,54 @@ class Ranking extends Component {
     
 
     render() {
-        if (this.props.exibeEvolucao == true) {
+        if (!!this.props.exibeEvolucaoRanking) {
             return (
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <ActivityIndicator size='large' color='#ff0000'/>
-                </View>
+                <Evolucao exibeEvolucao={this.props.exibeEvolucaoRanking} />
             )
         } else {
-            return (                
+            return (
+                <View>
+                    <Text>ano: {this.props.nuAnoAtual} </Text>
+                    <Text>qua: {this.props.cdQuadrimestreAtual} </Text>
+                    <Quadrimestre 
+                        nuAno={this.props.nuAnoAtual} 
+                        cdQuadrimestre={this.props.cdQuadrimestreAtual} 
+                    />
+                </View>
+            )
+        }
+        /*
+        } else {
+            return (  
                 <View style={ general.container }>
-                    { this.montaLinks() }
+                    <Text>{this.props.nuAnoAtual}</Text>
+                                  
+                    { 
+                    
+                <Quadrimestre nuAno={this.props.nuAnoAtual} cdQuadrimestre={this.props.cdQuadrimestreAtual}/>
+                this.montaLinks()  }
 
                     <ScrollView style={{paddingRight: 10}}>
                         <View>
-                            { this.montaRanking() }                    
+                            {this.montaRanking() }
                         </View>
                     </ScrollView>
                 </View>
             );
         }
+        */
     }
 }
 
 const mapStateToProps = state => ({
-   // nuAnoAtual: state.AppReducer.nuAnoAtual,
-    //cdQuadrimestreAtual: state.AppReducer.cdQuadrimestreAtual,
-
-    nuAno: state.RankingReducer.nuAno,
-    cdQuadrimestre: state.RankingReducer.cdQuadrimestre,
-    ranking: state.RankingReducer.ranking,
-    exibeEvolucao: state.RankingReducer.exibeEvolucao,
-    quadrimestres: state.AppReducer.quadrimestres
+    nuAnoAtual: state.AppReducer.nuAnoAtual,
+    cdQuadrimestreAtual: state.AppReducer.cdQuadrimestreAtual,
+    exibeEvolucaoRanking: state.RankingReducer.exibeEvolucaoRanking
+    // ranking: state.RankingReducer.ranking,
 });
 
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { carregaListaQuadrimestreAno, carregaRankingQuadrimestre }, dispatch);
+    { carregaRankingQuadrimestre }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ranking);

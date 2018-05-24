@@ -20,15 +20,17 @@ export const carregaGalerias = () => {
     };
 };
 
-export const carregaFotosGalerias = (cdGaleria) => {
+export const carregaFotosGalerias = (galeria) => {
     console.log("carregaFotosGalerias");
     return dispatch => {     
+        const { cdGaleria, deGaleria } = galeria;
+
         const url = `${URL_API}/galerias/fotos/${cdGaleria}`;  
         axios.get(url, {})
             .then( fotos => {
                 dispatcher.carregaFotosGaleriasDispatcher(cdGaleria, fotos, dispatch);
 
-                Actions.fotosgaleria();
+                Actions.fotosgaleria({ title: deGaleria });
             })
             .catch( err => {
                 console.log(err);

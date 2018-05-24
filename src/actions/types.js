@@ -17,6 +17,8 @@ export const types = {
     CARREGA_RANKING_QUADRIMESTRE_ATUAL: 'carrega_ranking_quadrimestre_atual',
     
     EXIBE_EVOLUCAO_RANKING: 'exibe_evolucao_ranking',
-    EXIBE_EVOLUCAO_ARTILHEIRO: 'exibe_evolucao_artilheiro'
+    EXIBE_EVOLUCAO_ARTILHEIRO: 'exibe_evolucao_artilheiro',
+
+    CARREGA_LISTA_QUADRIMESTRES_POR_ANO: 'carrega_lista_quadrimestres_por_ano'
 
 };
