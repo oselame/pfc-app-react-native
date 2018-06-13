@@ -19,6 +19,13 @@ export const types = {
     EXIBE_EVOLUCAO_RANKING: 'exibe_evolucao_ranking',
     EXIBE_EVOLUCAO_ARTILHEIRO: 'exibe_evolucao_artilheiro',
 
-    CARREGA_LISTA_QUADRIMESTRES_POR_ANO: 'carrega_lista_quadrimestres_por_ano'
+    ATUALIZA_DADOS_QUADRIMESTRE: 'atualiza_dados_quadrimestre',
+
+    CARREGA_LISTA_QUADRIMESTRES_POR_ANO: 'carrega_lista_quadrimestres_por_ano',
+    ATUALIZA_ANO_QUADRIMESTRE: 'atualiza_ano_quadrimestre',
+    ATUALIZA_ANO_E_QUADRIMESTRE: 'atualiza_ano_e_quadrimestre',
+    ATUALIZA_ANO_RANKING: 'atualiza_ano_ranking',
+    ATUALIZA_ANO_QUADRIMESTRE_RANKING: 'atualiza_ano_quadrimestre_ranking',
+    ATUALIZA_ANO_QUADRIMESTRE_ARTILHEIRO: 'atualiza_ano_quadrimestre_artilheiro'
 
 };

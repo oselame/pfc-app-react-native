@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StatusBar, Image, ActivityIndicator } from 'react-native';
+import { Image } from 'react-native';
+import { Container, Content, View, Text } from 'native-base';
 import HTMLView from 'react-native-htmlview';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import ExibeEvolucao from './exibeEvolucao';
 
-import { general } from '../styles';
 import LabelValue from './labelValue';
 import ListaTimes from './listaTimes';
 
@@ -19,6 +21,18 @@ class UltimaPartida extends Component {
 
     componentDidMount() {
         this.props.carregaUltimaPartida();
+    }
+
+    renderEvolucao() {
+        if (this.props.exibeEvolucaoUltimaPartida == true) {
+            return (
+                <View>
+                    <ExibeEvolucao />
+                </View>
+            )
+        } else {
+            return null;
+        }
     }
 
     exibirDataPlacar() {
@@ -81,31 +95,49 @@ class UltimaPartida extends Component {
         )
     }
 
-    render() {
-        if (this.props.erroCarregarUltimaPartida == true) {
+    renderUltimaPartida() {
+        if (this.props.erroCarregarUltimaPartida != true) {
             return (
-                <View style={{ flex: 1, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <Text>A Api do site PeladaFC está em manutenção. Tente em alguns instantes.</Text>
-                </View>
-            )
-        } else if (!this.props.dtUltimapartida) {
-            return (
-                <View style={{ flex: 1, flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <ActivityIndicator size='large' color='#ff0000'/>
-                </View>
-            )
-        } else {
-            return ( 
-                <ScrollView>
-                    <View style={ general.container }>
+                <Container>
+                    <Content>
                         { this.exibirDataPlacar() } 
                         { this.exibirTimes() }
                         { this.exibirBolaCheia() }
                         { this.exibirBolaMurcha() }
-                    </View>
-                </ScrollView>
+                    </Content>
+                </Container>
             )
+        } else {
+            return null;
         }
+    }
+
+    renderErroUltimaPartida() {
+        if (this.props.erroCarregarUltimaPartida == true) {
+            return (
+                <Container>
+                    <Content enableResetScrollToCoords={false} 
+                        contentContainerStyle={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 80 }}>
+                        <View>
+                            <Text>Não foi possível carregar os dados da Última Partida</Text>
+                            <Text>Tente novamente dentro de alguns instantantes.</Text>
+                        </View>
+                    </Content>
+                </Container>
+            )
+        } else {
+            return null;
+        }
+    }
+
+    render() {
+        return ( 
+            <View>
+                { this.renderErroUltimaPartida() }
+                { this.renderEvolucao() }
+                { this.renderUltimaPartida() }
+            </View>
+        )
     }
     
 }
@@ -117,6 +149,7 @@ const mapStateToProps = state => ({
     deBolamurcha: state.UltimaPartidaReducer.deBolamurcha,
     sociostimea: state.UltimaPartidaReducer.sociostimea,
     sociostimeb: state.UltimaPartidaReducer.sociostimeb,
+    exibeEvolucaoUltimaPartida: state.UltimaPartidaReducer.exibeEvolucaoUltimaPartida,
     erroCarregarUltimaPartida: state.UltimaPartidaReducer.erroCarregarUltimaPartida
 });
 

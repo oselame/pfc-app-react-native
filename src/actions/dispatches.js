@@ -66,7 +66,7 @@ export const dispatcher = {
     },
     
     carregaQuadrimestreAtualDispatcher: (quadrimestreAtual, dispatch) => {
-        console.log("carregaQuadrimestreAtualDispatcher", quadrimestreAtual.data);
+        //console.log("carregaQuadrimestreAtualDispatcher", quadrimestreAtual.data);
         dispatch({
             type: types.CARREGA_QUADRIMESTRE_ATUAL,
             payload: quadrimestreAtual

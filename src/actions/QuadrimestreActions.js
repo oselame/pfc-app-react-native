@@ -22,7 +22,6 @@ export const carregaQuadrimestreAtual = () => {
     };
 };
 
-
 export const carregaListaQuadrimestreAno = (nuAno) => {
     console.log("carregaListaQuadrimestreAno", nuAno);
     return dispatch => {     
@@ -32,7 +31,7 @@ export const carregaListaQuadrimestreAno = (nuAno) => {
                 dispatch({
                     type: types.CARREGA_LISTA_QUADRIMESTRE_ANO,
                     payload: quadrimestres.data
-                })
+                });
             })
             .catch( err => {
                 console.log(err);
@@ -41,19 +40,45 @@ export const carregaListaQuadrimestreAno = (nuAno) => {
 };
 
 export const carregaListaQuadrimestresPorAno = () => {
-    console.log("carregaListaQuadrimestresPorAno");
+    console.log("carregaListaQuadrimestresPorAno.action");
     return dispatch => {     
         const url = `${URL_API}/quadrimestre/anos`;  
         axios.get(url, {})
-            .then( quadrimestres => {
+            .then( quadrimestres => {     
+                // console.log("quadrimestres", quadrimestres.data);           
                 dispatch({
                     type: types.CARREGA_LISTA_QUADRIMESTRES_POR_ANO,
                     payload: quadrimestres.data
-                })
+                });
             })
             .catch( err => {
                 console.log(err);
             } );
+    };
+};
+
+export const atualizaDadosQuadrimestre = (nuAno, cdQuadrimestre, exibeSegundoQuadrimestre, exibeTerceiroQuadrimestre) => {
+    console.log("atualizaDadosQuadrimestre", nuAno, cdQuadrimestre, exibeSegundoQuadrimestre, exibeTerceiroQuadrimestre);
+    return {
+        type: types.ATUALIZA_DADOS_QUADRIMESTRE,
+        payload: { nuAno, cdQuadrimestre, exibeSegundoQuadrimestre, exibeTerceiroQuadrimestre }
+    };
+};
+
+
+export const atualizaAnoQuadrimestre = (nuAno) => {
+    console.log("atualizaAnoQuadrimestre", nuAno);
+    return {
+        type: types.ATUALIZA_ANO_QUADRIMESTRE,
+        payload: { nuAno }
+    };
+};
+
+export const atualizaAnoEQuadrimestre = (nuAno, cdQuadrimestre) => {
+    console.log("atualizaAnoEQuadrimestre", nuAno, cdQuadrimestre);
+    return {
+        type: types.ATUALIZA_ANO_E_QUADRIMESTRE,
+        payload: { nuAno, cdQuadrimestre }
     };
 };
 

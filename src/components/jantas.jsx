@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Left, Body, Text } from 'native-base';
+import { Container, Content, List, ListItem, Left, Body, Text, View } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import ExibeEvolucao from './exibeEvolucao';
 import { carregaJantares } from '../actions/JantaActions';
 
 class Janta extends Component {
@@ -13,6 +14,18 @@ class Janta extends Component {
 
     carregaListaJantares() {
         this.props.carregaJantares();
+    }
+
+    renderEvolucao() {
+        if (this.props.exibeEvolucaoJantar == true) {
+            return (
+                <View>
+                    <ExibeEvolucao />
+                </View>
+            )
+        } else {
+            return null;
+        }
     }
 
     renderRow() {
@@ -29,7 +42,7 @@ class Janta extends Component {
         }
     )}
 
-    render() {
+    renderJantas() {
         return (
             <Container>
                 <Content>
@@ -38,13 +51,23 @@ class Janta extends Component {
                     </List>
                 </Content>
             </Container>
+        )
+    }
+
+    render() {
+        return (
+            <View>
+                { this.renderEvolucao() }
+                { this.renderJantas() }
+            </View>
         );
     }
 }
 
 const mapStateToProps = state => ({ 
     erroCarregarJantares: state.JantaReducer.erroCarregarJantares,
-    jantares: state.JantaReducer.jantares
+    jantares: state.JantaReducer.jantares,
+    exibeEvolucaoJantar: state.JantaReducer.exibeEvolucaoJantar
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators( { carregaJantares }, dispatch);

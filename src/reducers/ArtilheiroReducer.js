@@ -2,8 +2,8 @@ import { types } from '../actions/types';
 
 const INITIAL_STATE = {
     artilheiros: [],
-    nuAno: 2000,
-    cdQuadrimestre: 0,
+    nuAno: 2017,
+    cdQuadrimestre: 3,
     exibeEvolucao: false
 };
 
@@ -21,6 +21,12 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 exibeEvolucao: true
+            }
+        case types.ATUALIZA_ANO_QUADRIMESTRE_ARTILHEIRO:
+            return {
+                ...state,
+                nuAno: action.payload.nuAno,
+                cdQuadrimestre: action.payload.cdQuadrimestre
             }
         default: 
             return state;

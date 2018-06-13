@@ -10,12 +10,11 @@ const carregaRankingQuadrimestreAxios = (nuAno, cdQuadrimestre) => {
     return dispatch => {     
         const url = `${URL_API}/ranking/quadrimestre?nuAno=${nuAno}&cdQuadrimestre=${cdQuadrimestre}`;
         axios.get(url, {})
-            .then( ranking => {                
+            .then( ranking => { 
+                // console.log("ranking.data", ranking.data);               
                 dispatch({
                     type: types.CARREGA_RANKING_QUADRIMESTRE_ATUAL,
-                    payload: ranking.data,
-                    nuAno: nuAno,
-                    cdQuadrimestre: cdQuadrimestre
+                    payload: ranking.data
                 })
             })
             .catch( err => {
@@ -27,3 +26,17 @@ const carregaRankingQuadrimestreAxios = (nuAno, cdQuadrimestre) => {
 export const carregaRankingQuadrimestre = (nuAno, cdQuadrimestre) => {
     return [dispatcher.carregaEvolucaoRankingDispatcher(), carregaRankingQuadrimestreAxios(nuAno, cdQuadrimestre)];
 };
+
+export const setaAnoSelecionado = (nuAno) => {
+    return {
+        type: types.ATUALIZA_ANO_RANKING,
+        payload: { nuAno }
+    }
+}
+
+export const setaAnoQuadrimestreSelecionado = (nuAno, cdQuadrimestre) => {
+    return {
+        type: types.ATUALIZA_ANO_QUADRIMESTRE_RANKING,
+        payload: { nuAno, cdQuadrimestre }
+    }
+}

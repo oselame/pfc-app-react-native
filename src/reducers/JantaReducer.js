@@ -2,7 +2,8 @@ import { types } from '../actions/types';
 
 const INITIAL_STATE = {
     jantares: [],
-    erroCarregarJantares: false
+    erroCarregarJantares: false,
+    exibeEvolucaoJantar: true
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,12 +12,14 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 jantares: action.payload,
-                erroCarregarJantares: false
+                erroCarregarJantares: false,
+                exibeEvolucaoJantar: false
             }
         case types.CARREGA_JANTARES_ERRO: 
             return {
                 ...state,
                 erroCarregarJantares: true,
+                exibeEvolucaoJantar: false,
                 jantares: []
             }        
         default: 

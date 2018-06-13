@@ -4,6 +4,8 @@ import { Container, Content, List, ListItem, Text, Left, Right, Icon, View } fro
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import ExibeEvolucao from './exibeEvolucao';
+
 import { carregaGalerias, carregaFotosGalerias } from '../actions/GaleriaActions';
 
 class Galeria extends Component {
@@ -18,6 +20,18 @@ class Galeria extends Component {
 
     handleClickGaleria(galeria) {     
         this.props.carregaFotosGalerias(galeria);
+    }
+
+    renderEvolucao() {
+        if (this.props.exibeEvolucaoGaleria == true) {
+            return (
+                <View>
+                    <ExibeEvolucao />
+                </View>
+            )
+        } else {
+            return null;
+        }
     }
 
 
@@ -39,7 +53,7 @@ class Galeria extends Component {
         ));
     }
 
-    render() {
+    renderGaleria() {
         return (
             <Container>
                 <Content>
@@ -51,10 +65,20 @@ class Galeria extends Component {
         )
     }
 
+    render() {
+        return (
+            <View>
+                { this.renderEvolucao() }
+                { this.renderGaleria() }
+            </View>
+        )
+    }
+
 }
 
 const mapStateToProps = state => ({ 
-    galerias: state.GaleriaReducer.galerias
+    galerias: state.GaleriaReducer.galerias,
+    exibeEvolucaoGaleria: state.GaleriaReducer.exibeEvolucaoGaleria
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ carregaGalerias, carregaFotosGalerias }, dispatch);

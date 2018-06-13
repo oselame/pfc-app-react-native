@@ -28,3 +28,10 @@ export const carregaArtilheirosQuadrimestreAxios = (nuAno, cdQuadrimestre) => {
 export const carregaArtilheirosQuadrimestre = (nuAno, cdQuadrimestre) => {
     return [dispatcher.carregaEvolucaoArtilheiroDispatcher(), carregaArtilheirosQuadrimestreAxios(nuAno, cdQuadrimestre)];
 }
+
+export const setaAnoQuadrimestreSelecionado  = (nuAno, cdQuadrimestre) => {
+    return {
+        type: types.ATUALIZA_ANO_QUADRIMESTRE_ARTILHEIRO,
+        payload: { nuAno, cdQuadrimestre }
+    }
+}

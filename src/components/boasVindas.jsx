@@ -6,8 +6,6 @@ import { Actions } from 'react-native-router-flux';
 
 import { verificaBackend } from '../actions/AppActions';
 
-import { colors } from '../styles';
-
 class BoasVindas extends Component {
 
     componentDidMount() {
