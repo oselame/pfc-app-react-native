@@ -14,7 +14,7 @@ export default class App extends Component {
     render() {
         return (
             <Provider store={createStore(reducers, {}, applyMiddleware(ReduxMulti, ReduxThunk, ReduxPromise))}>
-                  <Rotas />
+                <Rotas />
             </Provider>
         );
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Tab, Tabs,
-        Body, Title, ScrollableTab } from 'native-base';
+        Body, Title, ScrollableTab, StyleProvider } from 'native-base';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -23,44 +23,44 @@ class Principal extends Component {
   
   render() {
     return (
-      <Container >
-        <Header hasTabs noLeft>
-          <Body>
-            <Title>Pelada Futebol Clube</Title>              
-          </Body>
-        </Header>
-        
-        <Content scrollEnabled={false}>
-          <Tabs initialPage={0} 
-                renderTabBar={()=> <ScrollableTab />} 
-                tabBarPosition='top' >
-                
-            <Tab heading="UltimaPartida">
-              <UltimaPartida />
-            </Tab>
+        <Container >
+          <Header hasTabs noLeft>
+            <Body>
+              <Title>Pelada Futebol Clube</Title>              
+            </Body>
+          </Header>
+          
+          <Content scrollEnabled={false}>
+            <Tabs initialPage={0} 
+                  renderTabBar={()=> <ScrollableTab />} 
+                  tabBarPosition='top' >
+                  
+              <Tab heading="UltimaPartida">
+                <UltimaPartida />
+              </Tab>
 
-            <Tab heading="Ranking">
-              <Ranking />
-            </Tab>
+              <Tab heading="Ranking">
+                <Ranking />
+              </Tab>
 
-            <Tab heading="Artilheiro">
-              <Artilheiro />
-            </Tab>
+              <Tab heading="Artilheiro">
+                <Artilheiro />
+              </Tab>
 
-            <Tab heading="Aniversariantes">
-              <Aniversariantes />
-            </Tab>
+              <Tab heading="Aniversariantes">
+                <Aniversariantes />
+              </Tab>
 
-            <Tab heading="Jantas">
-              <Janta />
-            </Tab>
+              <Tab heading="Jantas">
+                <Janta />
+              </Tab>
 
-            <Tab heading="Galeria">
-              <Galeria />
-            </Tab>
-          </Tabs>
-        </Content>
-      </Container>
+              <Tab heading="Galeria">
+                <Galeria />
+              </Tab>
+            </Tabs>
+          </Content>
+        </Container>
     )
   }
 

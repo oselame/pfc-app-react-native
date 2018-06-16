@@ -37,7 +37,8 @@ class UltimaPartida extends Component {
 
     exibirDataPlacar() {
         return (
-            <View style={{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', paddingBottom: 20 }}>
+            <View style={{ alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', 
+                padding: 10 }}>
                 <LabelValue label="Data" value={this.props.dtUltimapartida} />
                 <LabelValue label="Placar" value={this.props.deResultado} />
             </View>
@@ -63,7 +64,7 @@ class UltimaPartida extends Component {
 
     exibirBolaCheia() {
         return (
-            <View style={{ paddingTop: 40 }}>
+            <View style={{ paddingHorizontal: 10, paddingVertical:10 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Image source={ require('../../assets/bola-cheia.png') } 
                         style={{ height: 40, width: 40 }}/>
@@ -80,7 +81,7 @@ class UltimaPartida extends Component {
 
     exibirBolaMurcha() {
         return (
-            <View style={{ paddingTop: 40 }}>
+            <View style={{ paddingHorizontal: 10, paddingVertical:10 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Image source={ require('../../assets/bola-murcha.png') } 
                         style={{ height: 40, width: 40 }}/>
@@ -98,14 +99,12 @@ class UltimaPartida extends Component {
     renderUltimaPartida() {
         if (this.props.erroCarregarUltimaPartida != true) {
             return (
-                <Container>
-                    <Content>
-                        { this.exibirDataPlacar() } 
-                        { this.exibirTimes() }
-                        { this.exibirBolaCheia() }
-                        { this.exibirBolaMurcha() }
-                    </Content>
-                </Container>
+                <View>
+                    { this.exibirDataPlacar() } 
+                    { this.exibirTimes() }
+                    { this.exibirBolaCheia() }
+                    { this.exibirBolaMurcha() }
+                </View>
             )
         } else {
             return null;
@@ -132,11 +131,13 @@ class UltimaPartida extends Component {
 
     render() {
         return ( 
-            <View>
-                { this.renderErroUltimaPartida() }
-                { this.renderEvolucao() }
-                { this.renderUltimaPartida() }
-            </View>
+            <Container>
+                <Content>
+                    { this.renderErroUltimaPartida() }
+                    { this.renderEvolucao() }
+                    { this.renderUltimaPartida() }
+                </Content>
+            </Container>
         )
     }
     

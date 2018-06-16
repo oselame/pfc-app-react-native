@@ -1,4 +1,4 @@
-package com.peladafcbase;
+package com.peladafc;
 
 import android.app.Application;
 

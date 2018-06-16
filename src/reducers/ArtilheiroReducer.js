@@ -2,8 +2,8 @@ import { types } from '../actions/types';
 
 const INITIAL_STATE = {
     artilheiros: [],
-    nuAno: 2017,
-    cdQuadrimestre: 3,
+    nuAno: 2018,
+    cdQuadrimestre: 1,
     exibeEvolucao: false
 };
 
