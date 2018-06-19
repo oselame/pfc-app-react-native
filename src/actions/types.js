@@ -26,6 +26,7 @@ export const types = {
     ATUALIZA_ANO_E_QUADRIMESTRE: 'atualiza_ano_e_quadrimestre',
     ATUALIZA_ANO_RANKING: 'atualiza_ano_ranking',
     ATUALIZA_ANO_QUADRIMESTRE_RANKING: 'atualiza_ano_quadrimestre_ranking',
-    ATUALIZA_ANO_QUADRIMESTRE_ARTILHEIRO: 'atualiza_ano_quadrimestre_artilheiro'
+    ATUALIZA_ANO_QUADRIMESTRE_ARTILHEIRO: 'atualiza_ano_quadrimestre_artilheiro',
+    ATUALIZA_ANO_ARTILHEIRO: 'atualiza_ano_artilheiro'
 
 };

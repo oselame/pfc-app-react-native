@@ -7,6 +7,8 @@ import variables from "../theme/variables/commonColor";
 
 export default class Setup extends Component {
 
+  
+
   render() {
     return (
       <StyleProvider style={getTheme(variables)}>

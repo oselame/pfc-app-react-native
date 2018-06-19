@@ -21,11 +21,6 @@ export default (state = INITIAL_STATE, action) => {
                 ranking: action.payload.socios,
                 exibeEvolucaoRanking: false
             }
-        case types.ATUALIZA_ANO_RANKING:
-            return {
-                ...state,
-                nuAno: action.payload.nuAno
-            }
         case types.ATUALIZA_ANO_QUADRIMESTRE_RANKING:
             return {
                 ...state,

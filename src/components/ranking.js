@@ -128,8 +128,8 @@ class Ranking extends Component {
 const mapStateToProps = state => ({
     nuAnoAtual: state.AppReducer.nuAnoAtual,
     cdQuadrimestreAtual: state.AppReducer.cdQuadrimestreAtual,
-    
     quadrimestresAnos: state.QuadrimestreReducer.quadrimestresAnos,
+    
 
     nuAno: state.RankingReducer.nuAno,
     cdQuadrimestre: state.RankingReducer.cdQuadrimestre,
