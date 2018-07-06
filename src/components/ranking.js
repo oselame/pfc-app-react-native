@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {  Text } from 'react-native';
 import { Container, Content, View } from 'native-base';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,15 +16,9 @@ class Ranking extends Component {
 
     constructor(props) {
         super(props);
+        this.onChangeAno = this.onChangeAno.bind(this);
+        this.onClickQuadrimestre = this.onClickQuadrimestre.bind(this);
         this.onClickQuadrimestre(this.props.nuAnoAtual, this.props.cdQuadrimestreAtual);
-    }
-
-    onChangeAno(nuAno) {
-        this.props.setaAnoQuadrimestreSelecionado(nuAno, this.props.cdQuadrimestre);
-    }
-
-    onClickQuadrimestre(nuAno, cdQuadrimestre) {
-        this.props.setaAnoQuadrimestreSelecionado(nuAno, cdQuadrimestre);
     }
 
     componentWillMount() {
@@ -34,7 +29,15 @@ class Ranking extends Component {
         if (nextProps.nuAno !== this.props.nuAno ||
             nextProps.cdQuadrimestre !== this.props.cdQuadrimestre) {
                 this.props.carregaRankingQuadrimestre(nextProps.nuAno, nextProps.cdQuadrimestre);
-            }
+        }
+    }
+
+    onChangeAno(nuAno) {
+        this.props.setaAnoQuadrimestreSelecionado(nuAno, this.props.cdQuadrimestre);
+    }
+
+    onClickQuadrimestre(nuAno, cdQuadrimestre) {
+        this.props.setaAnoQuadrimestreSelecionado(nuAno, cdQuadrimestre);
     }
 
     montaRanking() {
@@ -94,25 +97,25 @@ class Ranking extends Component {
 }
 
     render() {
-        if (!!this.props.exibeEvolucaoRanking) {
+        if (this.props.exibeEvolucaoRanking) {
             return (
                 <ExibeEvolucao />
             )
-        } else {
+        } 
             return (
                 <Container>
                     <Content>
                         <View style={{ backgroundColor: '#bcbcbc', paddingBottom: 10 }}>
                             <AnoQuadrimestre nuAno={this.props.nuAno} 
                                 quadrimestresAnos={this.props.quadrimestresAnos}
-                                onChangeAno={this.onChangeAno.bind(this)}
+                                onChangeAno={this.onChangeAno}
                             />
 
                             <Quadrimestre 
                                 nuAno={this.props.nuAno} 
                                 cdQuadrimestre={this.props.cdQuadrimestre} 
                                 quadrimestresAnos={this.props.quadrimestresAnos}
-                                selecionaQuadrimestre={ this.onClickQuadrimestre.bind(this) } />
+                                selecionaQuadrimestre={ this.onClickQuadrimestre } />
                         </View>
 
                         <View style={{ marginLeft:20, marginRight:20  }}>
@@ -121,7 +124,7 @@ class Ranking extends Component {
                     </Content>
                 </Container>
             )
-        }
+        
     }
 }
 
@@ -140,5 +143,25 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators(
     { setaAnoQuadrimestreSelecionado, carregaRankingQuadrimestre }, dispatch);
+
+
+
+Ranking.propTypes = {
+    nuAnoAtual: PropTypes.number.isRequired,
+    cdQuadrimestreAtual: PropTypes.number.isRequired,
+    nuAno: PropTypes.number.isRequired,
+    cdQuadrimestre: PropTypes.number.isRequired,
+
+    setaAnoQuadrimestreSelecionado: PropTypes.func.isRequired,
+    carregaRankingQuadrimestre: PropTypes.func.isRequired,
+    exibeEvolucaoRanking: PropTypes.bool.isRequired,
+    ranking: PropTypes.array,
+    quadrimestresAnos: PropTypes.array
+};
+    
+Ranking.defaultProps = {
+    ranking: [],
+    quadrimestresAnos: []
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ranking);

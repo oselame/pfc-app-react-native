@@ -1,4 +1,3 @@
-import { Actions } from 'react-native-router-flux';
 import axios from 'axios';
 
 import { URL_API } from '../config/server';

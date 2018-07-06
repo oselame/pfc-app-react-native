@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { Container, Content, View } from 'native-base';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -14,6 +16,8 @@ class Artilheiro extends Component {
 
     constructor(props) {
         super(props);
+        this.onChangeAno = this.onChangeAno.bind(this);
+        this.onClickQuadrimestre = this.onClickQuadrimestre.bind(this);
         this.onClickQuadrimestre(this.props.nuAnoAtual, this.props.cdQuadrimestreAtual);
     }
 
@@ -40,11 +44,11 @@ class Artilheiro extends Component {
 
     montaRanking() {
         if (!this.props.artilheiros.length) {
-            return 
-        } else {
+             return null;
+        } 
             return (
-                this.props.artilheiros.map((rank, i) => (
-                    <View key={i} style={{ paddingTop: 10, borderBottomWidth: 1  }}>
+                this.props.artilheiros.map((rank) => (
+                    <View key={rank.nuClassificacao} style={{ paddingTop: 10, borderBottomWidth: 1  }}>
                         <View>
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                                 <View style={{ width: 30 }}>
@@ -71,30 +75,30 @@ class Artilheiro extends Component {
                     </View>
                 ))
             );
-        }
+        
 
 }
 
     render() {
-        if (!!this.props.exibeEvolucaoArtilheiros) {
+        if (this.props.exibeEvolucaoArtilheiros) {
             return (
                 <ExibeEvolucao />
             )
-        } else {
+        } 
             return (
                 <Container>
                     <Content>
                         <View style={{ backgroundColor: '#bcbcbc', paddingBottom: 10 }}>
                             <AnoQuadrimestre nuAno={this.props.nuAno} 
                                 quadrimestresAnos={this.props.quadrimestresAnos}
-                                onChangeAno={this.onChangeAno.bind(this)}
+                                onChangeAno={ this.onChangeAno }
                             />
     
                             <Quadrimestre 
                                 nuAno={this.props.nuAno} 
                                 cdQuadrimestre={this.props.cdQuadrimestre} 
                                 quadrimestresAnos={this.props.quadrimestresAnos}
-                                selecionaQuadrimestre={ this.onClickQuadrimestre.bind(this) } />
+                                selecionaQuadrimestre={ this.onClickQuadrimestre } />
                         </View>
     
                         <View style={{ marginLeft:20, marginRight:20  }}>
@@ -103,8 +107,8 @@ class Artilheiro extends Component {
                     </Content>
                 </Container>
             )
-        }
-    };
+        
+    }
 }
 
 const mapStateToProps = state => ({
@@ -121,5 +125,24 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators(
     { carregaArtilheirosQuadrimestre, setaAnoQuadrimestreSelecionado }, dispatch);
+
+Artilheiro.propTypes = {
+    nuAnoAtual: PropTypes.number.isRequired,
+    cdQuadrimestreAtual: PropTypes.number.isRequired,
+    nuAno: PropTypes.number.isRequired,
+    cdQuadrimestre: PropTypes.number.isRequired,
+
+    setaAnoQuadrimestreSelecionado: PropTypes.func.isRequired,
+    carregaArtilheirosQuadrimestre: PropTypes.func.isRequired,
+    artilheiros: PropTypes.array,
+    quadrimestresAnos: PropTypes.array,
+    exibeEvolucaoArtilheiros: PropTypes.bool
+};
+    
+Artilheiro.defaultProps = {
+    artilheiros: [],
+    quadrimestresAnos: [],
+    exibeEvolucaoArtilheiros: false
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Artilheiro);

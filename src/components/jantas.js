@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Left, Body, Text, View } from 'native-base';
+import { Container, Content, List, ListItem, Body, Text, View } from 'native-base';
+import PropTypes from 'prop-types'
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -17,22 +19,22 @@ class Janta extends Component {
     }
 
     renderEvolucao() {
-        if (this.props.exibeEvolucaoJantar == true) {
+        if (this.props.exibeEvolucaoJantar === true) {
             return (
                 <View>
                     <ExibeEvolucao />
                 </View>
             )
-        } else {
+        } 
             return null;
-        }
+        
     }
 
     renderRow() {
-        return this.props.jantares.map( (janta, i) => {
+        return this.props.jantares.map( (janta) => {
             const socios = janta.socios;
             return (
-                <ListItem key={i}>
+                <ListItem key={janta.data}>
                     <Body>
                         <Text>{socios}</Text>
                         <Text note>{janta.data}</Text>
@@ -71,5 +73,16 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators( { carregaJantares }, dispatch);
+
+Janta.propTypes = {
+    carregaJantares: PropTypes.func.isRequired,
+    jantares: PropTypes.array,
+    exibeEvolucaoJantar: PropTypes.bool
+}
+
+Janta.defaultProps = {
+    jantares: [],
+    exibeEvolucaoJantar: false
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Janta);

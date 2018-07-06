@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Content, List, ListItem, Text, Left, Right, Icon, View } from 'native-base';
+import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -23,21 +24,21 @@ class Galeria extends Component {
     }
 
     renderEvolucao() {
-        if (this.props.exibeEvolucaoGaleria == true) {
+        if (this.props.exibeEvolucaoGaleria === true) {
             return (
                 <View>
                     <ExibeEvolucao />
                 </View>
             )
-        } else {
+        } 
             return null;
-        }
+        
     }
 
 
     renderRow() {
-        return this.props.galerias.map( (galeria, i) => (
-            <ListItem key={i} 
+        return this.props.galerias.map( (galeria) => (
+            <ListItem key={galeria.cdGaleria} 
                 onPress={() => this.handleClickGaleria(galeria)} 
             >
                 <Left>
@@ -82,5 +83,16 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ carregaGalerias, carregaFotosGalerias }, dispatch);
+
+Galeria.propTypes = {
+    carregaGalerias: PropTypes.func.isRequired,
+    carregaFotosGalerias: PropTypes.func.isRequired,
+    galerias: PropTypes.array,
+    exibeEvolucaoGaleria: PropTypes.bool.isRequired
+}
+
+Galeria.defaultProps = {
+    galerias: []
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Galeria);

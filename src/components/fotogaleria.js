@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Content, View, Text } from 'native-base';
-import { Dimensions } from 'react-native';
+import { Container, Content, View } from 'native-base';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ImageGallery } from '@nlabs/react-native-image-gallery';
+import PropTypes from 'prop-types'
 
 import { carregaFotosGalerias } from '../actions/GaleriaActions';
 
@@ -20,9 +20,9 @@ class FotoGaleria extends Component {
     }
 
     componentWillMount() {
-        let imagens = this.props.fotosgaleria.map((img) => ({
+        const imagens = this.props.fotosgaleria.map((img) => ({
             url: encodeURI(`${URL_GALERIA}/galeria_${img.cdGaleria}/${img.nmArqfoto}`),
-            id: '' + img.cdFotogaleria,
+            id: `${  img.cdFotogaleria}`,
             title: img.nmArqfoto
           })
         );
@@ -58,5 +58,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ carregaFotosGalerias }, dispatch);
+
+FotoGaleria.propTypes = {
+    fotosgaleria: PropTypes.array
+}
+
+FotoGaleria.defaultProps = {
+    fotosgaleria: []
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(FotoGaleria);
