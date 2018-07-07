@@ -7,10 +7,10 @@ import FotoGaleria from './components/fotogaleria';
 
 export default props => (
     <Router>
-      <Stack key="root">
-        <Scene key='boasvindas'   component={BoasVindas}   title="Bem Vindo" hideNavBar={true} initial />
-        <Scene key='principal'    component={Principal}    title="Principal" hideNavBar={true} />
-        <Scene key='fotosgaleria' component={FotoGaleria}  title="Fotos" hideNavBar={false} />
+      <Stack key="root" navigationBarStyle={{ backgroundColor: '#ff0000' }}>
+        <Scene key='boasvindas'   component={BoasVindas}   title="Bem Vindo" hideNavBar initial />
+        <Scene key='principal'    component={Principal}    title="Principal" hideNavBar />
+        <Scene key='fotosgaleria' component={FotoGaleria}  title="Fotos" hideNavBar={false}  />
       </Stack>
     </Router>
 )

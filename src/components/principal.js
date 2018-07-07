@@ -11,6 +11,7 @@ import Janta from './jantas';
 import Galeria from './galeria';
 import Ranking from './ranking';
 import Artilheiro from './artilheiro';
+import Historia from './historia';
 
 import { carregaQuadrimestreAtual, carregaListaQuadrimestresPorAno } from '../actions/QuadrimestreActions';
 
@@ -57,6 +58,10 @@ class Principal extends Component {
 
               <Tab heading="Galeria">
                 <Galeria />
+              </Tab>
+
+              <Tab heading="História">
+                <Historia />
               </Tab>
             </Tabs>
           </Content>

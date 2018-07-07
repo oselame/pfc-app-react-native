@@ -137,6 +137,9 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-pdf')
+    compile project(':react-native-fetch-blob')
+    compile project(':react-native-view-pdf')
     compile project(':react-native-vector-icons')
     compile project(':react-native-photo-view')
     compile project(':react-native-gesture-handler')

@@ -38,12 +38,7 @@ class FotoGaleria extends Component {
                 <Content>
                     <View>
                         <ImageGallery 
-                            images={this.state.imageUrls}  
-                            
-                            /*
-                            imageHeight={ Dimensions.get('window').height }
-                            imageWidth={ Dimensions.get('window').width }
-                            */
+                            images={this.state.imageUrls}                             
                         />
                     </View>
                 </Content>

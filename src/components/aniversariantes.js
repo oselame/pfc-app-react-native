@@ -69,7 +69,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({ carregaAniversariant
 Aniversariantes.propTypes = {
   carregaAniversariantes: PropTypes.func.isRequired,
   exibeEvolucaoAniversariantes: PropTypes.bool.isRequired,
-  aniversariantes: PropTypes.arrayOf.isRequired
+  aniversariantes: PropTypes.any
 };
 
 Aniversariantes.defaultProps = {
