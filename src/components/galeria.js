@@ -23,41 +23,27 @@ class Galeria extends Component {
         this.props.carregaFotosGalerias(galeria);
     }
 
-    renderEvolucao() {
-        if (this.props.exibeEvolucaoGaleria === true) {
-            return (
-                <View>
-                    <ExibeEvolucao />
+    renderRow = () => this.props.galerias.map( (galeria) => (
+        <ListItem key={galeria.cdGaleria} 
+            onPress={() => this.handleClickGaleria(galeria)} >
+            <Left>
+                <View style={{ flexDirection: 'column' }}>
+                    <Text>{galeria.deGaleria}</Text>
+                    <Text note>{galeria.dtGaleria}</Text>
                 </View>
-            )
-        } 
-            return null;
-        
-    }
+            </Left>
+            <Right>
+                <Icon name="arrow-forward" />
+            </Right>
+        </ListItem>
+    ))
 
-
-    renderRow() {
-        return this.props.galerias.map( (galeria) => (
-            <ListItem key={galeria.cdGaleria} 
-                onPress={() => this.handleClickGaleria(galeria)} 
-            >
-                <Left>
-                    <View style={{ flexDirection: 'column' }}>
-                        <Text>{galeria.deGaleria}</Text>
-                        <Text note>{galeria.dtGaleria}</Text>
-                    </View>
-                </Left>
-                <Right>
-                    <Icon name="arrow-forward" />
-                </Right>
-            </ListItem>
-        ));
-    }
-
-    renderGaleria() {
+    render() {
+        const { exibeEvolucaoGaleria } = this.props;
         return (
             <Container>
                 <Content>
+                    { exibeEvolucaoGaleria && <ExibeEvolucao /> }
                     <List>
                         { this.renderRow() }                        
                     </List>
@@ -65,16 +51,6 @@ class Galeria extends Component {
             </Container>
         )
     }
-
-    render() {
-        return (
-            <View>
-                { this.renderEvolucao() }
-                { this.renderGaleria() }
-            </View>
-        )
-    }
-
 }
 
 const mapStateToProps = state => ({ 

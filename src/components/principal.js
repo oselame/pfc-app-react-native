@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Tab, Tabs,
-        Body, Title, ScrollableTab, StyleProvider } from 'native-base';
-
+        Body, Title, ScrollableTab } from 'native-base';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -31,7 +31,6 @@ class Principal extends Component {
             </Body>
           </Header>
           
-          <Content scrollEnabled={false}>
             <Tabs initialPage={0} 
                   renderTabBar={()=> <ScrollableTab />} 
                   tabBarPosition='top' >
@@ -64,16 +63,19 @@ class Principal extends Component {
                 <Historia />
               </Tab>
             </Tabs>
-          </Content>
+
         </Container>
     )
   }
 
 }
 
-const mapStateToProps = state => ({ });
+Principal.propTypes = {
+  carregaQuadrimestreAtual: PropTypes.func.isRequired,
+  carregaListaQuadrimestresPorAno: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators(
   { carregaQuadrimestreAtual, carregaListaQuadrimestresPorAno }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Principal);
+export default connect(null, mapDispatchToProps)(Principal);

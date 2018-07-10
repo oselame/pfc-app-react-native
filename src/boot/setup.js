@@ -1,17 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import { StyleProvider } from "native-base";
 
 import App from "../App";
 import getTheme from "../theme/components";
 import variables from "../theme/variables/commonColor";
 
-export default class Setup extends Component {
+const Setup = () => (
+  <StyleProvider style={getTheme(variables)}>
+    <App />
+  </StyleProvider>
+);
 
-  render() {
-    return (
-      <StyleProvider style={getTheme(variables)}>
-        <App />
-      </StyleProvider>
-    );
-  }
-}
+export default Setup;

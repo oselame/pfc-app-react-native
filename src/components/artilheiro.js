@@ -85,29 +85,29 @@ class Artilheiro extends Component {
                 <ExibeEvolucao />
             )
         } 
-            return (
-                <Container>
-                    <Content>
-                        <View style={{ backgroundColor: '#bcbcbc', paddingBottom: 10 }}>
-                            <AnoQuadrimestre nuAno={this.props.nuAno} 
-                                quadrimestresAnos={this.props.quadrimestresAnos}
-                                onChangeAno={ this.onChangeAno }
-                            />
+        return (
+            <Container>
+                <Content>
+                    <View style={{ backgroundColor: '#bcbcbc', paddingBottom: 10 }}>
+                        <AnoQuadrimestre nuAno={this.props.nuAno} 
+                            quadrimestresAnos={this.props.quadrimestresAnos}
+                            onChangeAno={ this.onChangeAno }
+                        />
+
+                        <Quadrimestre 
+                            nuAno={this.props.nuAno} 
+                            cdQuadrimestre={this.props.cdQuadrimestre} 
+                            quadrimestresAnos={this.props.quadrimestresAnos}
+                            selecionaQuadrimestre={ this.onClickQuadrimestre } />
+                    </View>
+
+                    <View style={{ marginLeft:20, marginRight:20  }}>
+                        { this.montaRanking() }
+                    </View>
+                </Content>
+            </Container>
+        )
     
-                            <Quadrimestre 
-                                nuAno={this.props.nuAno} 
-                                cdQuadrimestre={this.props.cdQuadrimestre} 
-                                quadrimestresAnos={this.props.quadrimestresAnos}
-                                selecionaQuadrimestre={ this.onClickQuadrimestre } />
-                        </View>
-    
-                        <View style={{ marginLeft:20, marginRight:20  }}>
-                            { this.montaRanking() }
-                        </View>
-                    </Content>
-                </Container>
-            )
-        
     }
 }
 

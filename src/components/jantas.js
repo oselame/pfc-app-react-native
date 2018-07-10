@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Body, Text, View } from 'native-base';
+import { Container, Content, List, ListItem, Body, Text } from 'native-base';
 import PropTypes from 'prop-types'
 
 import { connect } from 'react-redux';
@@ -18,20 +18,7 @@ class Janta extends Component {
         this.props.carregaJantares();
     }
 
-    renderEvolucao() {
-        if (this.props.exibeEvolucaoJantar === true) {
-            return (
-                <View>
-                    <ExibeEvolucao />
-                </View>
-            )
-        } 
-            return null;
-        
-    }
-
-    renderRow() {
-        return this.props.jantares.map( (janta) => {
+    renderRow = () => this.props.jantares.map( (janta) => {
             const socios = janta.socios;
             return (
                 <ListItem key={janta.data}>
@@ -42,26 +29,19 @@ class Janta extends Component {
                 </ListItem>
             )
         }
-    )}
+    )
 
-    renderJantas() {
+    render() {
+        const { exibeEvolucaoJantar } = this.props;
         return (
             <Container>
                 <Content>
+                    { exibeEvolucaoJantar &&  <ExibeEvolucao /> }
                     <List>
                         { this.renderRow() }
                     </List>
                 </Content>
             </Container>
-        )
-    }
-
-    render() {
-        return (
-            <View>
-                { this.renderEvolucao() }
-                { this.renderJantas() }
-            </View>
         );
     }
 }

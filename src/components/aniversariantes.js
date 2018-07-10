@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Left, Body, Thumbnail, Text, View } from 'native-base';
+import { Container, Content, List, ListItem, Left, Body, Thumbnail, Text } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -12,31 +12,7 @@ class Aniversariantes extends Component {
     this.props.carregaAniversariantes();
   }
 
-  renderEvolucao() {
-    if (this.props.exibeEvolucaoAniversariantes === true) {
-      return (
-        <View>
-          <ExibeEvolucao />
-        </View>
-      );
-    }
-    return null;
-  }
-
-  renderAniversariantes() {
-    return (
-      <Container>
-        <Content >
-          <List>
-            { this.renderRow() }
-          </List>
-        </Content>
-      </Container>
-    );
-  }
-
-  renderRow() {
-    return this.props.aniversariantes.map((niver) => (
+  renderRow = () => this.props.aniversariantes.map((niver) => (
       <ListItem avatar key={niver.nmApelido}>
         <Left>
           <Thumbnail source={{ uri: `data:image/png;base64, ${niver.foto}` }} />
@@ -46,15 +22,19 @@ class Aniversariantes extends Component {
           <Text note>{niver.data}</Text>
         </Body>
       </ListItem>
-    ));
-  }
+    ))
 
   render() {
+    const { exibeEvolucaoAniversariantes } = this.props;
     return (
-      <View>
-        { this.renderEvolucao() }
-        { this.renderAniversariantes() }
-      </View>
+        <Container>
+          <Content >
+            { exibeEvolucaoAniversariantes && <ExibeEvolucao /> }
+            <List>
+              { this.renderRow() }
+            </List>
+          </Content>
+        </Container>
     );
   }
 }
@@ -68,8 +48,13 @@ const mapDispatchToProps = dispatch => bindActionCreators({ carregaAniversariant
 
 Aniversariantes.propTypes = {
   carregaAniversariantes: PropTypes.func.isRequired,
-  exibeEvolucaoAniversariantes: PropTypes.bool.isRequired,
-  aniversariantes: PropTypes.any
+  exibeEvolucaoAniversariantes: PropTypes.bool,
+  aniversariantes: PropTypes.array
+};
+
+Aniversariantes.defaultProps = {
+  aniversariantes: [],
+  exibeEvolucaoAniversariantes: true
 };
 
 Aniversariantes.defaultProps = {
