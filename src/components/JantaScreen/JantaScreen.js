@@ -5,10 +5,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import ExibeEvolucao from './exibeEvolucao';
-import { carregaJantares } from '../actions/JantaActions';
+import ExibeEvolucao from '../exibeEvolucao';
+import { carregaJantares } from '../../actions/JantaActions';
 
-class Janta extends Component {
+class JantaScreen extends Component {
     
     componentDidMount() {
         this.carregaListaJantares();
@@ -54,15 +54,15 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators( { carregaJantares }, dispatch);
 
-Janta.propTypes = {
+JantaScreen.propTypes = {
     carregaJantares: PropTypes.func.isRequired,
     jantares: PropTypes.array,
     exibeEvolucaoJantar: PropTypes.bool
 }
 
-Janta.defaultProps = {
+JantaScreen.defaultProps = {
     jantares: [],
     exibeEvolucaoJantar: false
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Janta);
+export default connect(mapStateToProps, mapDispatchToProps)(JantaScreen);

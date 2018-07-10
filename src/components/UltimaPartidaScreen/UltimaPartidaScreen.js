@@ -7,17 +7,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import ExibeEvolucao from './exibeEvolucao';
+import ExibeEvolucao from '../exibeEvolucao';
 
-import LabelValue from './labelValue';
-import ListaTimes from './listaTimes';
+import LabelValue from '../labelValue';
+import ListaTimes from '../listaTimes';
 
-import { carregaUltimaPartida } from '../actions/UltimaPartidaActions';
+import { carregaUltimaPartida } from '../../actions/UltimaPartidaActions';
 
-const bolaCheiaImage = require('../../assets/bola-cheia.png');
-const bolaMurchaImage = require('../../assets/bola-murcha.png');
+const bolaCheiaImage = require('../../../assets/bola-cheia.png');
+const bolaMurchaImage = require('../../../assets/bola-murcha.png');
 
-class UltimaPartida extends Component {
+class UltimaPartidaScreen extends Component {
     
     componentDidMount() {
         this.props.carregaUltimaPartida();
@@ -116,7 +116,7 @@ class UltimaPartida extends Component {
     
 }
 
-UltimaPartida.propTypes = {
+UltimaPartidaScreen.propTypes = {
     carregaUltimaPartida: PropTypes.func.isRequired,
     exibeEvolucaoUltimaPartida: PropTypes.bool.isRequired,
     erroCarregarUltimaPartida: PropTypes.bool.isRequired,
@@ -128,7 +128,7 @@ UltimaPartida.propTypes = {
     sociostimeb: PropTypes.array,
 };
 
-UltimaPartida.defaultProps = {
+UltimaPartidaScreen.defaultProps = {
     sociostimea: [],
     sociostimeb: [],
 };
@@ -147,4 +147,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators(
     { carregaUltimaPartida }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UltimaPartida);
+export default connect(mapStateToProps, mapDispatchToProps)(UltimaPartidaScreen);

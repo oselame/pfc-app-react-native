@@ -5,11 +5,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import ExibeEvolucao from './exibeEvolucao';
+import ExibeEvolucao from '../exibeEvolucao';
 
-import { carregaGalerias, carregaFotosGalerias } from '../actions/GaleriaActions';
+import { carregaGalerias, carregaFotosGalerias } from '../../actions/GaleriaActions';
 
-class Galeria extends Component {
+class GaleriaScreen extends Component {
 
     componentDidMount() {
         this.carregaGalerias();
@@ -60,15 +60,15 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({ carregaGalerias, carregaFotosGalerias }, dispatch);
 
-Galeria.propTypes = {
+GaleriaScreen.propTypes = {
     carregaGalerias: PropTypes.func.isRequired,
     carregaFotosGalerias: PropTypes.func.isRequired,
     galerias: PropTypes.array,
     exibeEvolucaoGaleria: PropTypes.bool.isRequired
 }
 
-Galeria.defaultProps = {
+GaleriaScreen.defaultProps = {
     galerias: []
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Galeria);
+export default connect(mapStateToProps, mapDispatchToProps)(GaleriaScreen);

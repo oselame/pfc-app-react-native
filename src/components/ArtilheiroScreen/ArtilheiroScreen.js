@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import AnoQuadrimestre from './anoQuadrimestre';
-import Quadrimestre from './quadrimestre';
-import ExibeEvolucao from './exibeEvolucao';
+import AnoQuadrimestre from '../anoQuadrimestre';
+import Quadrimestre from '../quadrimestre';
+import ExibeEvolucao from '../exibeEvolucao';
 
-import { carregaArtilheirosQuadrimestre, setaAnoQuadrimestreSelecionado  } from '../actions/ArtilheiroActions';
+import { carregaArtilheirosQuadrimestre, setaAnoQuadrimestreSelecionado  } from '../../actions/ArtilheiroActions';
 
-class Artilheiro extends Component {
+class ArtilheiroScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -126,7 +126,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators(
     { carregaArtilheirosQuadrimestre, setaAnoQuadrimestreSelecionado }, dispatch);
 
-Artilheiro.propTypes = {
+ArtilheiroScreen.propTypes = {
     nuAnoAtual: PropTypes.number.isRequired,
     cdQuadrimestreAtual: PropTypes.number.isRequired,
     nuAno: PropTypes.number.isRequired,
@@ -139,10 +139,10 @@ Artilheiro.propTypes = {
     exibeEvolucaoArtilheiros: PropTypes.bool
 };
     
-Artilheiro.defaultProps = {
+ArtilheiroScreen.defaultProps = {
     artilheiros: [],
     quadrimestresAnos: [],
     exibeEvolucaoArtilheiros: false
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Artilheiro);
+export default connect(mapStateToProps, mapDispatchToProps)(ArtilheiroScreen);

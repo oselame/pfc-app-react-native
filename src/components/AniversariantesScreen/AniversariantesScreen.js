@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import { carregaAniversariantes } from '../actions/AniversarianteActions';
-import ExibeEvolucao from './exibeEvolucao';
+import { carregaAniversariantes } from '../../actions/AniversarianteActions';
+import ExibeEvolucao from '../exibeEvolucao';
 
-class Aniversariantes extends Component {
+class AniversariantesScreen extends Component {
   componentDidMount() {
     this.props.carregaAniversariantes();
   }
@@ -46,19 +46,19 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({ carregaAniversariantes }, dispatch);
 
-Aniversariantes.propTypes = {
+AniversariantesScreen.propTypes = {
   carregaAniversariantes: PropTypes.func.isRequired,
   exibeEvolucaoAniversariantes: PropTypes.bool,
   aniversariantes: PropTypes.array
 };
 
-Aniversariantes.defaultProps = {
+AniversariantesScreen.defaultProps = {
   aniversariantes: [],
   exibeEvolucaoAniversariantes: true
 };
 
-Aniversariantes.defaultProps = {
+AniversariantesScreen.defaultProps = {
   nuAno: 2018,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Aniversariantes);
+export default connect(mapStateToProps, mapDispatchToProps)(AniversariantesScreen);

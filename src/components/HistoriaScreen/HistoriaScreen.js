@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Pdf from 'react-native-pdf';
 
-import { URL_GALERIA } from '../config/server';
+import { URL_GALERIA } from '../../config/server';
 
 const styles = StyleSheet.create({
     container: {
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     }
 });
 
-class Historia extends React.Component {
+class HistoriaScreen extends React.Component {
 
     constructor(props) {
         super(props);
@@ -109,12 +109,12 @@ class Historia extends React.Component {
     }
 };
 
-Historia.propTypes = {
+HistoriaScreen.propTypes = {
     // loading: PropTypes.bool
 };
 
-Historia.defaultProps = {
+HistoriaScreen.defaultProps = {
     // loading: false
 };
 
-export default Historia;
+export default HistoriaScreen;

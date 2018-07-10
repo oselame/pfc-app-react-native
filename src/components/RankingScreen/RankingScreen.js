@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import AnoQuadrimestre from './anoQuadrimestre';
-import Quadrimestre from './quadrimestre';
-import ExibeEvolucao from './exibeEvolucao';
+import AnoQuadrimestre from '../anoQuadrimestre';
+import Quadrimestre from '../quadrimestre';
+import ExibeEvolucao from '../exibeEvolucao';
 
-import { setaAnoQuadrimestreSelecionado, carregaRankingQuadrimestre } from '../actions/RankingActions';
+import { setaAnoQuadrimestreSelecionado, carregaRankingQuadrimestre } from '../../actions/RankingActions';
 
-class Ranking extends Component {
+class RankingScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -146,7 +146,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(
 
 
 
-Ranking.propTypes = {
+    RankingScreen.propTypes = {
     nuAnoAtual: PropTypes.number.isRequired,
     cdQuadrimestreAtual: PropTypes.number.isRequired,
     nuAno: PropTypes.number.isRequired,
@@ -159,9 +159,9 @@ Ranking.propTypes = {
     quadrimestresAnos: PropTypes.array
 };
     
-Ranking.defaultProps = {
+RankingScreen.defaultProps = {
     ranking: [],
     quadrimestresAnos: []
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Ranking);
+export default connect(mapStateToProps, mapDispatchToProps)(RankingScreen);

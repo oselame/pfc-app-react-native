@@ -5,11 +5,11 @@ import { bindActionCreators } from 'redux';
 import { Actions } from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 
-import { verificaBackend } from '../actions/AppActions';
+import { verificaBackend } from '../../actions/AppActions';
 
-const splashImage = require('../../assets/splash.png');
+const splashImage = require('../../../assets/splash.png');
 
-class BoasVindas extends Component {
+class BoasVindasScreen extends Component {
     
     componentWillMount() {
         this.props.verificaBackend()
@@ -59,13 +59,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({ verificaBackend }, dispatch);
 
-BoasVindas.propTypes = {
+BoasVindasScreen.propTypes = {
     verificaBackend: PropTypes.func.isRequired,
     backendNoAr: PropTypes.number.isRequired,
 }
 
-BoasVindas.defaultProps = {
+BoasVindasScreen.defaultProps = {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BoasVindas);
+export default connect(mapStateToProps, mapDispatchToProps)(BoasVindasScreen);
