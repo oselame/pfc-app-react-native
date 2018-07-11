@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 
 class Quadrimestre extends Component {
   
-  constructor(props) {
-    super(props);
-  }
-
   renderButton(cdQuadrimestre, deQuadrimestre, dangerParam, darkParam, largura = 70) {
     return (
       <Button style={{ width: largura }} dark={darkParam} danger={dangerParam}
@@ -19,26 +15,26 @@ class Quadrimestre extends Component {
   }
 
   renderButtonPrimeiroQuadrimestre() {
-    let darkParam = this.props.cdQuadrimestre === 1;
-    let dangerParam = this.props.cdQuadrimestre !== 1;
+    const darkParam = this.props.cdQuadrimestre === 1;
+    const dangerParam = this.props.cdQuadrimestre !== 1;
     return this.renderButton(1, "1º", dangerParam, darkParam, 70);
   }
 
   renderButtonSegundoQuadrimestre() {
-    let darkParam = this.props.cdQuadrimestre === 2;
-    let dangerParam = this.props.cdQuadrimestre !== 2;
+    const darkParam = this.props.cdQuadrimestre === 2;
+    const dangerParam = this.props.cdQuadrimestre !== 2;
     return this.renderButton(2, "2º", dangerParam, darkParam, 70);
   }
 
   renderButtonTerceiroQuadrimestre() {
-    let darkParam = this.props.cdQuadrimestre === 3;
-    let dangerParam = this.props.cdQuadrimestre !== 3;
+    const darkParam = this.props.cdQuadrimestre === 3;
+    const dangerParam = this.props.cdQuadrimestre !== 3;
     return this.renderButton(3, "3º", dangerParam, darkParam, 70);
   }
 
   renderButtonAnual() {
-    let darkParam = this.props.cdQuadrimestre === 4;
-    let dangerParam = this.props.cdQuadrimestre !== 4;
+    const darkParam = this.props.cdQuadrimestre === 4;
+    const dangerParam = this.props.cdQuadrimestre !== 4;
     return this.renderButton(4, "Anual", dangerParam, darkParam, 90);
   }
 
@@ -63,6 +59,9 @@ class Quadrimestre extends Component {
 }
 
 Quadrimestre.propTypes = {
+  selecionaQuadrimestre: PropTypes.func.isRequired,
+  nuAno: PropTypes.number.isRequired,
+  cdQuadrimestre: PropTypes.number.isRequired
 }
 
 Quadrimestre.defaultProps = {
