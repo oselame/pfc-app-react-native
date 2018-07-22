@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './App';
+import Setup from "./src/boot/setup";
 
-AppRegistry.registerComponent('peladafc', () => App);
+AppRegistry.registerComponent('peladafc', () => Setup);

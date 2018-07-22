@@ -1,14 +1,18 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-
-import { general } from '../styles';
+import PropTypes from 'prop-types';
 
 
 const LabelValue = props => (
     <View style={{ flexDirection: 'row' }}>
-        <Text style={ general.sectionText}>{ props.label }:</Text>
-        <Text style={ general.sectionTitle}>{ props.value }</Text>
+        <Text>{ props.label }:</Text>
+        <Text style={{ fontWeight: 'bold'}}>{ props.value }</Text>
     </View>
 );
+
+LabelValue.propTypes = {
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
+}
 
 export default LabelValue;

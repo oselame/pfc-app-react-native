@@ -3,7 +3,8 @@ import { types } from '../actions/types';
 const INITIAL_STATE = {
     galerias: [],
     cdGaleria: 0,
-    fotosgaleria: []
+    fotosgaleria: [],
+    exibeEvolucaoGaleria: true
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,7 +12,8 @@ export default (state = INITIAL_STATE, action) => {
         case types.CARREGA_GALERIAS: 
             return {
                 ...state, 
-                galerias: action.payload
+                galerias: action.payload,
+                exibeEvolucaoGaleria: false
             }
         case types.SELECIONAR_GALERIA: 
             return {

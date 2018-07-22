@@ -3,8 +3,7 @@ import { types } from '../actions/types';
 const INITIAL_STATE = {
     backendNoAr: -1,
     nuAnoAtual: 2000,
-    cdQuadrimestreAtual: 0,
-    quadrimestres: []
+    cdQuadrimestreAtual: 0
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -20,13 +19,6 @@ export default (state = INITIAL_STATE, action) => {
                 cdQuadrimestreAtual: action.payload.data.cdQuadrimestre,
                 nuAnoAtual: action.payload.data.nuAno
             }
-        case types.CARREGA_LISTA_QUADRIMESTRE_ANO:
-            return {
-                ...state,
-                quadrimestres: action.payload
-            }
-        
-        
         default: 
             return state;
     }

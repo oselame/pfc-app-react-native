@@ -1,7 +1,8 @@
 import { types } from '../actions/types';
 
 const INITIAL_STATE = {
-    aniversariantes: []
+    aniversariantes: [],
+    exibeEvolucaoAniversariantes: true
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -9,7 +10,8 @@ export default (state = INITIAL_STATE, action) => {
         case types.CARREGA_ANIVERSARIANTES:
             return {
                 ...state, 
-                aniversariantes: action.payload
+                aniversariantes: action.payload,
+                exibeEvolucaoAniversariantes: false
             }        
         default: 
             return state;

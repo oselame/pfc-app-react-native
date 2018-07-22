@@ -7,7 +7,8 @@ const INITIAL_STATE = {
     deBolacheia: '',
     sociostimea: [],
     sociostimeb: [],
-    erroCarregarUltimaPartida: false
+    erroCarregarUltimaPartida: false,
+    exibeEvolucaoUltimaPartida: true
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -19,12 +20,14 @@ export default (state = INITIAL_STATE, action) => {
                 deBolacheia: action.payload.deBolacheia,
                 deBolamurcha: action.payload.deBolamurcha,
                 sociostimea: action.payload.sociostimea,
-                sociostimeb: action.payload.sociostimeb
+                sociostimeb: action.payload.sociostimeb,
+                exibeEvolucaoUltimaPartida: false
               }
         case types.CARREGA_ULTIMA_PARTIDA_ERRO:
               return {
                 ...state, 
-                erroCarregarUltimaPartida: true
+                erroCarregarUltimaPartida: true,
+                exibeEvolucaoUltimaPartida: false
               }
         default: 
             return state;

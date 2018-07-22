@@ -1,70 +1,39 @@
-import React, { Component } from 'react';import { View, Text, FlatList, Image } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, Image } from 'react-native';
+import PropTypes from 'prop-types';
 
-import { general } from '../styles';
-
-
+const camiseta = require('../../assets/camiseta.png');
 
 class ListaTimes extends Component {
-    imprimeSocio(socios, alinhamento) {
-        return socios.map(socio => {
-            if (+socio.nuGol > 0) {
-                if (alinhamento === 'flex-end') {
-                    return (
-                        <View key={socio.cdSocio} style={{ flexDirection: 'row', alignItems: alinhamento}}>
-                            <Text>{socio.nmApelido}</Text>
-                            <Text style={{width:25, textAlign: 'right'}}>({socio.nuGol})</Text>
-                        </View>
-                    )
-                }  else {
-                    return (
-                        <View key={socio.cdSocio} style={{ flexDirection: 'row', alignItems: alinhamento}}>
-                            <Text style={{width:25, textAlign: 'left'}}>({socio.nuGol})</Text>                        
-                            <Text>{socio.nmApelido}</Text>
-                        </View>
-                    )
-                }
-            } else {
-                if (alinhamento === 'flex-end') {
-                    return (
-                        <View key={socio.cdSocio} style={{ flexDirection: 'row', alignItems: alinhamento}}>
-                            <Text>{socio.nmApelido}</Text>
-                            <Text style={{width:25}}></Text>
-                        </View>
-                    )
-                } else {
-                    return (
-                        <View key={socio.cdSocio} style={{ flexDirection: 'row', alignItems: alinhamento}}>
-                            <Text style={{width:25}}></Text>
-                            <Text>{socio.nmApelido}</Text>
-                        </View>
-                    )
-                }
-            }
-        })
-    };
 
-    imprimeTime() {
-        if (this.props.alinhamento === 'flex-end') {
-            return (
-                <View style={{ alignItems: this.props.alinhamento, flexDirection: 'row' }}>
-                    <Text style={{ fontSize: 20, color: '#000000', paddingRight: 5 }}>{ this.props.time }</Text>
-                    <Image source={ require('../../assets/camiseta.png') } 
-                                style={{ backgroundColor: this.props.corCamisa, 
-                                         width:25, height: 30,
-                                         alignItems: this.props.alinhamento}}/>
-                </View>
-            )
-        } else {
-            return (
-                <View style={{ alignItems: this.props.alinhamento, flexDirection: 'row' }}>
-                    <Image source={ require('../../assets/camiseta.png') } 
-                                style={{ backgroundColor: this.props.corCamisa, 
-                                         width:25, height: 30,
-                                         alignItems: this.props.alinhamento }}/>
-                    <Text style={{ fontSize: 20, color: '#000000', paddingLeft: 5 }}>{ this.props.time }</Text>
-                </View>
-            )
-        }
+
+    imprimeSocio = (socios, alinhamento) => socios.map(socio => {
+        const textAlign = alinhamento === 'flex-end' ? 'right' : 'left'; 
+        const alignRight = textAlign === 'right';
+        const gols = +socio.nuGol > 0;
+        return (
+            <View key={socio.cdSocio} style={{ flexDirection: 'row', alignItems: alinhamento}}>
+                { alignRight && <Text>{socio.nmApelido}</Text> }
+                { gols && <Text style={{width:25, textAlign }}>({socio.nuGol})</Text> }
+                { !gols && <Text style={{width:25, textAlign }} /> }
+                { !alignRight && <Text>{socio.nmApelido}</Text> }
+            </View>
+        )
+    });
+
+    imprimeTime = () => {
+        const textAlign = this.props.alinhamento === 'flex-end' ? 'right' : 'left'; 
+        const alignRight = textAlign === 'right';
+        return (
+            <View style={{ alignItems: this.props.alinhamento, flexDirection: 'row' }}>
+                { alignRight && <Text style={{ fontSize: 20, color: '#000000', paddingRight: 5 }}>{ this.props.time }</Text>}
+                    <Image source={ camiseta } 
+                            style={{ backgroundColor: this.props.corCamisa, 
+                                width:25, height: 30,
+                                alignItems: this.props.alinhamento}}/>
+                { !alignRight && <Text style={{ fontSize: 20, color: '#000000', paddingRight: 5 }}>{ this.props.time }</Text>}
+            </View>
+        )
     }
 
     render() {
@@ -78,5 +47,17 @@ class ListaTimes extends Component {
         )
     }
 }
+
+ListaTimes.propTypes = {
+    alinhamento: PropTypes.string.isRequired,
+    corCamisa: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+    socios: PropTypes.array,
+};
+
+ListaTimes.defaultProps = {
+    socios: []
+}
+
 
 export default ListaTimes;

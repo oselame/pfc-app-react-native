@@ -1,8 +1,6 @@
-import { Actions } from 'react-native-router-flux';
 import axios from 'axios';
 
 import { URL_API } from '../config/server';
-import { types } from './types';
 import { dispatcher } from './dispatches';
 
 /**
@@ -16,9 +14,9 @@ export const carregaUltimaPartida = () => {
             .then( partidas => {
                 dispatcher.carregarUltimaPartidaDispatcher(partidas, dispatch);
             })
-            .catch( err => {
-                dispatcher.erroCarregarUltimaPartidaDispatcher(dispatch);
-            } );
+            .catch( () => {
+                    dispatcher.erroCarregarUltimaPartidaDispatcher(dispatch);
+                } );
     };
 };
 

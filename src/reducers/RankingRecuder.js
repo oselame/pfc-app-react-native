@@ -1,26 +1,31 @@
 import { types } from '../actions/types';
 
 const INITIAL_STATE = {
-    nuAno: 2000,
-    cdQuadrimestre: 0,
-    exibeEvolucao: false,
+    nuAno: 2018,
+    cdQuadrimestre: 2,
+    exibeEvolucaoRanking: false,
     ranking: []
 };
 
 export default (state = INITIAL_STATE, action) => {
+    // console.log(action.payload);
     switch (action.type) {
         case types.EXIBE_EVOLUCAO_RANKING: 
             return {
                 ...state,
-                exibeEvolucao: true
+                exibeEvolucaoRanking: true
             }
         case types.CARREGA_RANKING_QUADRIMESTRE_ATUAL:
             return {
                 ...state,
                 ranking: action.payload.socios,
-                nuAno: action.nuAno,
-                cdQuadrimestre: action.cdQuadrimestre,
-                exibeEvolucao: false
+                exibeEvolucaoRanking: false
+            }
+        case types.ATUALIZA_ANO_QUADRIMESTRE_RANKING:
+            return {
+                ...state,
+                nuAno: action.payload.nuAno,
+                cdQuadrimestre: action.payload.cdQuadrimestre
             }
         default: 
             return state;
