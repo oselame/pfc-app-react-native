@@ -8,11 +8,11 @@ import { URL_GALERIA } from '../../config/server';
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        marginTop: 0,
+        marginTop: 0
     },
     pdf: {
         // flex:1,
@@ -52,13 +52,11 @@ class HistoriaScreen extends React.Component {
     }
 
     carregaHistoria = () => {
-        const arquivo = `${URL_GALERIA}/album-20-anos.pdf`;
+        const arquivo = `${URL_GALERIA}/historia.pdf`;
         const source = {uri: arquivo, cache:true};
 
         return (
             <Pdf
-                // activityIndicator={<ActivityIndicator />}
-                // activityIndicatorProps={{color: '#ff0000', progressTintColor: '#ff0000', size: 'large'}}
                 source={source}
                 onLoadProgress={(percent) => {
                     const perc = Math.trunc(percent * 100);
@@ -71,6 +69,7 @@ class HistoriaScreen extends React.Component {
                 onError={(error)=>{
                     console.log(error);
                 }}
+                enablePaging
                 style={styles.pdf}/>
         )
     }
@@ -86,14 +85,14 @@ class HistoriaScreen extends React.Component {
                 <ActivityIndicator style={ styles.indicador } size='large' color='#ff0000' />
                 <Text style={ styles.evolucao }>Aguarde ... { this.state.evolution } % </Text>
                 { mensagem === 1 &&  this.mensagemEvolucao('Isso vai demorar.') }
-                { mensagem === 2 &&  this.mensagemEvolucao('Eu sei está demorando, não vai embora.') }
+                { mensagem === 2 &&  this.mensagemEvolucao('Eu sei está demorando.') }
                 { mensagem === 3 &&  this.mensagemEvolucao('É 3g? Putz lá se vai 15mb.') }
                 { mensagem === 4 &&  this.mensagemEvolucao('Quase na metade, não desista você consegue.') }
                 { mensagem === 5 &&  this.mensagemEvolucao('Chegamos na metade, só falta a outra metade.') }
-                { mensagem === 6 &&  this.mensagemEvolucao('Não desiste agora, mais um pouco.') }
+                { mensagem === 6 &&  this.mensagemEvolucao('Só mais um pouco.') }
                 { mensagem === 7 &&  this.mensagemEvolucao('Eu sei, eu sei é muita história.') }
-                { mensagem === 8 &&  this.mensagemEvolucao('Finalmente eu vejo a luz no fim do túnel') }
-                { mensagem === 9 &&  this.mensagemEvolucao('Senta que la vem a história.') }
+                { mensagem === 8 &&  this.mensagemEvolucao('Finalmente existe luz no fim do túnel') }
+                { mensagem === 9 &&  this.mensagemEvolucao('Senta que lá vem a história.') }
                 { mensagem === 10 &&  this.mensagemEvolucao('Acabou, acabou.') }
             </View>
         )}
@@ -103,7 +102,7 @@ class HistoriaScreen extends React.Component {
         return (
             <View style={styles.container}>
                 {loading && this.exibeCarregarHistoria() }
-                { this.carregaHistoria() }
+                { this.carregaHistoria() }              
            </View>
         )
     }

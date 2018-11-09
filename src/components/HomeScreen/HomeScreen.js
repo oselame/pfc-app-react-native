@@ -33,7 +33,8 @@ class HomeScreen extends Component {
           
             <Tabs initialPage={0} 
                   renderTabBar={()=> <ScrollableTab />} 
-                  tabBarPosition='top' >
+                  tabBarPosition='top' 
+                  locked>
                   
               <Tab heading="UltimaPartida">
                 <UltimaPartidaScreen />

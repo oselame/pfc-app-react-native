@@ -1,4 +1,4 @@
-package com.peladafc;
+package com.peladafutebolclube;
 
 import com.facebook.react.ReactActivity;
 

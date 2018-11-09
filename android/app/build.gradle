@@ -98,11 +98,11 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.peladafc"
+        applicationId "com.peladafutebolclube"
         minSdkVersion 19
         targetSdkVersion 22
-        versionCode 6
-        versionName "6.0"
+        versionCode 7
+        versionName "7.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -134,6 +134,10 @@ android {
             }
         }
     }
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {

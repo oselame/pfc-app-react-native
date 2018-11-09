@@ -14,8 +14,8 @@ export const carregaArtilheirosQuadrimestreAxios = (nuAno, cdQuadrimestre) => {
                 dispatch({
                     type: types.CARREGA_ARTILHEIRO_QUADRIMESTRE_ATUAL,
                     payload: artilheiros.data,
-                    nuAno: nuAno,
-                    cdQuadrimestre: cdQuadrimestre
+                    nuAno,
+                    cdQuadrimestre
                 })
             })
             .catch( err => {
@@ -24,13 +24,9 @@ export const carregaArtilheirosQuadrimestreAxios = (nuAno, cdQuadrimestre) => {
     }
 }
 
-export const carregaArtilheirosQuadrimestre = (nuAno, cdQuadrimestre) => {
-    return [dispatcher.carregaEvolucaoArtilheiroDispatcher(), carregaArtilheirosQuadrimestreAxios(nuAno, cdQuadrimestre)];
-}
+export const carregaArtilheirosQuadrimestre = (nuAno, cdQuadrimestre) => [dispatcher.carregaEvolucaoArtilheiroDispatcher(), carregaArtilheirosQuadrimestreAxios(nuAno, cdQuadrimestre)]
 
-export const setaAnoQuadrimestreSelecionado  = (nuAno, cdQuadrimestre) => {
-    return {
+export const setaAnoQuadrimestreSelecionado  = (nuAno, cdQuadrimestre) => ({
         type: types.ATUALIZA_ANO_QUADRIMESTRE_ARTILHEIRO,
         payload: { nuAno, cdQuadrimestre }
-    }
-}
+    })

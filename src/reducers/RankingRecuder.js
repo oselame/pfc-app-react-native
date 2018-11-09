@@ -1,14 +1,13 @@
 import { types } from '../actions/types';
 
 const INITIAL_STATE = {
-    nuAno: 2018,
-    cdQuadrimestre: 2,
+    nuAno: 0,
+    cdQuadrimestre: 1,
     exibeEvolucaoRanking: false,
     ranking: []
 };
 
 export default (state = INITIAL_STATE, action) => {
-    // console.log(action.payload);
     switch (action.type) {
         case types.EXIBE_EVOLUCAO_RANKING: 
             return {
