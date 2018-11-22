@@ -1,0 +1,26 @@
+{
+  "DVTSourceControlWorkspaceBlueprintLocationsKey" : {
+    "63C7E1B5D8934BEA1AE1120114AA4FBD70692B2F" : {
+      "DVTSourceControlBranchIdentifierKey" : "reactbase",
+      "DVTSourceControlLocationRevisionKey" : "8f39a7b1c967e44cb3f10839209bcf7239c4718b",
+      "DVTSourceControlBranchOptionsKey" : 4,
+      "DVTSourceControlBranchRemoteNameKey" : "origin",
+      "DVTSourceControlWorkspaceBlueprintLocationTypeKey" : "DVTSourceControlBranch"
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "63C7E1B5D8934BEA1AE1120114AA4FBD70692B2F",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6C0B1F55-E55A-4DE6-86CA-6F7406BBAE79",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "63C7E1B5D8934BEA1AE1120114AA4FBD70692B2F" : "pfc-app-react-native\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "peladafc",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ios\/peladafc.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/oselame\/pfc-app-react-native.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "63C7E1B5D8934BEA1AE1120114AA4FBD70692B2F"
+    }
+  ]
+}
